@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Back To Basics</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="Dashboard.css">
+    <link rel="stylesheet" href="Settings.css">
+    <script src="jquery.js"></script>
+    <script src="common.js"></script>
+    <script src="Settings.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div id="hamburger" class="hamburger" onclick="toggleSidebar()">☰</div>
+            <div class="header-right">
+                <div id="notifications" class="icon-btn" onclick="toggleNotificationsDropdown(event)">
+                    🔔
+                    <span class="badge" id="notifCount">3</span>
+                    <div id="notificationsDropdown" class="notifications-dropdown">
+                        <h4>Unread Notifications</h4>
+                        <ul class="notificationList">
+                        </ul>
+                    </div>
+                </div>
+                <div class="icon-btn" title="Help" onclick="location.href='Help.html'">❓</div>
+                <div class="icon-btn" title="Account Settings" onclick="location.href='Settings.html'">⚙️</div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <aside id="sidebar" class="sidebar">
+                <img src="../B2B-LAB-Logo.png" alt="Logo" class="logo" />
+                <nav>
+                    <a href="Dashboard.html"><span><i class='bx bxs-home'></i></span>
+                        Dashboard</a>
+                    <a href="Courses.html"><span><i class='bx bxs-book-bookmark'></i></span> Courses</a>
+                    <a href="Certificates.html"><span><i class='bx bxs-book-content'></i></span> Certificates</a>
+                    <a href="Events.html"><span><i class='bx bxs-calendar'></i></span> Events</a>
+                    <a href="Forum.html"><span><i class='bx bxs-chat'></i></span> Forum</a>
+                    <a href="JobPortal.html"><span><i class='bx bxs-briefcase'></i></span> Job Portal</a>
+                    <a href="GigHzAI.html"><span><i class='bx bx-world'></i></span>AI</a>
+                </nav>
+            </aside>
+
+            <main class="main">
+                <section class="account-settings">
+                    <h2 class="section-title">Account Settings</h2>
+                    <p>Only highlighted settings can be changed*</p>
+                    <div class="settings-card">
+
+                        <div class="Profile">
+                            <div class="profile-container">
+                                <div class="profile-btn-container">
+                                    <img alt="Profile" class="profile-pic avatar-img" id="profileImage">
+                                    <div class="profile-buttons">
+                                        <button class="remove-btn change-avatar-btn"><i class='bx bxs-pencil'></i></button>
+                                        <button class="remove-btn remove-avatar-btn"><i class='bx bxs-trash-alt'></i></button>
+                                    </div>
+                                </div>
+                                <div class="form-controling-btn-cont">
+                                    <a href="#" class="settingFormTab" data-target="settingBasicDetailsCont"><ion-icon
+                                            name="person-outline"></ion-icon> Basic
+                                        Details</a>
+                                    <a href="#" class="settingFormTab" data-target="setingsAddressCont"><ion-icon
+                                            name="location-outline"></ion-icon> Address</a>
+                                    <a href="#" class="settingFormTab" data-target="settingsCourseCont"><ion-icon
+                                            name="library-outline"></ion-icon> Course</a>
+                                    <a href="ResetPassword.html">Reset password and hint</a>
+                                    <!-- <a href="#">Logout</a> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <form class="settings-form" novalidate>
+
+                            <div class="setting-form-box" id="settingsCourseCont">
+                                <h2>Course Details</h2>
+                                <div class="themed-table-container">
+                                    <table class="themed-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Course</th>
+                                                <th>Levels</th>
+                                                <th>Registration Date</th>
+                                                <th>Offer Applied</th>
+                                                <th>Amount Due</th>
+                                                <th>Level Period</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="ReferralCode"
+                                    style="display:flex;justify-content:space-between;margin-block:15px;margin-right:5px;">
+                                    <label>Referral Code: </label>
+                                    <a class="referral-code"></a>
+                                </div>
+                            </div>
+                            <!-- <div class="PasswordResetOptions"
+                                style="display:flex;justify-content:space-between;margin-block:15px;margin-right:5px;">
+                                <label>Password Options (Requires logging in again): </label>
+                                <a class="themed-link" href="ResetPassword.html">Reset password and hint</a>
+                            </div> -->
+
+                            <div class="setting-form-box" id="settingBasicDetailsCont">
+                                <h2>Basic Details</h2>
+                                <div class="form-group namegroup">
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" id="userName" placeholder="Username" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" placeholder="First Name" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="middleName">Middle Name</label>
+                                        <input type="text" id="middleName" placeholder="Middle Name" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" placeholder="Last Name" readonly />
+                                    </div>
+                                    <div class="form-group form-group-no-bottom-margin">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" placeholder="your@email.com" readonly />
+                                        <div class="form-group optionsGroup">
+                                            <label for="emailVerified" id="emailVerifiedLabel">
+                                                <input type="checkbox" name="emailVerified" value="emailVerified"
+                                                    id="emailVerified" disabled />
+                                                <span class="emailVerifiedSpan">Email Verified</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dob">DOB</label>
+                                        <input type="date" id="dob" placeholder="Date of Birth" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mobileNumber">Mobile Number</label>
+                                        <input type="tel" id="mobileNumber" class="canBeChanged"
+                                            placeholder="Mobile Number" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="telephoneNumber">Telephone Number</label>
+                                        <input type="tel" id="telephoneNumber" class="canBeChanged"
+                                            placeholder="Telephone Number" />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group optionsGroup">
+                                    <label for="gender">Gender</label>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" name="gender" value="isMale" id="isMale" disabled />
+                                            Male
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="gender" value="isFemale" id="isFemale" disabled />
+                                            Female
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group optionsGroup">
+                                    <label for="profession">Profession</label>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" name="profession" value="isStudent" id="isStudent"
+                                                disabled>
+                                            Student
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="profession" value="isWorking" id="isWorking"
+                                                disabled>
+                                            Working
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="profession" value="isJobSeeker" id="isJobSeeker"
+                                                disabled>
+                                            Job Seeker
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="schoolOrCompany">School Or Company Name</label>
+                                    <input type="text" id="schoolOrCompany" placeholder="School Or Company Name"
+                                        readonly />
+                                </div>
+                            </div>
+
+                            <!-- ---------------------------------------- -->
+
+                            <div class="setting-form-box" id="setingsAddressCont">
+                                <h2>Address Details</h2>
+                                <div>
+                                    <div class="form-group">
+                                        <label for="addressLine1">Address Line 1</label>
+                                        <input type="text" id="addressLine1" class="canBeChanged"
+                                            placeholder="Address Line 1" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addressLine2">Address Line 2</label>
+                                        <input type="text" id="addressLine2" class="canBeChanged"
+                                            placeholder="Address Line 2" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addressLine3">Address Line 3</label>
+                                        <input type="text" id="addressLine3" class="canBeChanged"
+                                            placeholder="Address Line 3" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="landmark">Landmark</label>
+                                        <input type="text" id="landmark" class="canBeChanged"
+                                            placeholder="Nearest Landmark" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zipCode">Postal Code</label>
+                                        <input type="number" id="zipCode" class="canBeChanged" placeholder="Postal Code"
+                                             />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" class="canBeChanged" placeholder="City" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <input type="text" id="state" class="canBeChanged" placeholder="State"
+                                             />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="country">Country</label>
+                                        <input type="text" id="country" class="canBeChanged" placeholder="Country"
+                                             />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-buttons">
+                                <button type="submit" class="save-btn">Save Changes</button>
+                                <button type="button" class="cancel-btn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    <script src="Layout.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

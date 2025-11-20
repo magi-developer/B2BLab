@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Back To Basics</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="Dashboard.css">
+    <link rel="stylesheet" href="Courses.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <script src="jquery.js"></script>
+    <script src="common.js"></script>
+    <script src="Courses.js"></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div id="hamburger" class="hamburger" onclick="toggleSidebar()">☰</div>
+            <div class="header-right">
+                <div id="notifications" class="icon-btn" onclick="toggleNotificationsDropdown(event)">
+                    🔔
+                    <span class="badge" id="notifCount">3</span>
+                    <div id="notificationsDropdown" class="notifications-dropdown">
+                        <h4>Unread Notifications</h4>
+                        <ul class="notificationList">
+                        </ul>
+                    </div>
+                </div>
+                <div class="icon-btn" title="Help" onclick="location.href='Help.html'">❓</div>
+                <div class="icon-btn" title="Account Settings" onclick="location.href='Settings.html'">⚙️</div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <aside id="sidebar" class="sidebar">
+                <img src="../B2B-LAB-Logo.png" alt="Logo" class="logo" />
+                <nav>
+                    <a href="Dashboard.html"><span><i class='bx bxs-home'></i></span> Dashboard</a>
+                    <a href="Courses.html" style="border-bottom: 3px solid #F15A29;"><span><i
+                                class='bx bxs-book-bookmark'></i></span> Courses</a>
+                    <a href="Certificates.html"><span><i class='bx bxs-book-content'></i></span> Certificates</a>
+                    <a href="Events.html"><span><i class='bx bxs-calendar'></i></span> Events</a>
+                    <a href="Forum.html"><span><i class='bx bxs-chat'></i></span> Forum</a>
+                    <a href="JobPortal.html"><span><i class='bx bxs-briefcase'></i></span> Job Portal</a>
+                    <a href="GigHzAI.html"><span><i class='bx bx-world'></i></span>AI</a>
+                </nav>
+            </aside>
+            <main class="main course_main_container">
+                <div class="course-search-box content_searcher">
+                    <ion-icon name="search-outline"></ion-icon>
+                    <input type="text" id="courseSearch" placeholder="Search...">
+                </div>
+                <!-- <h2 class="courses_heading">LMS Courses</h2> -->
+                <div class="cards">
+
+                </div>
+                <div class="explore-course-section">
+                    <h2 class="explore-course-heading">Explore More Course</h2>
+                    <button class='btnDashboardType1 btnExploreCourses'>Explore</button>
+                    <div class="explore-course">
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    <script src="Layout.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

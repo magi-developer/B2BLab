@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Back To Basics</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="Dashboard.css">
+    <script src="jquery.js"></script>
+    <script src="common.js"></script>
+    <script src="Dashboard.js"></script>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div id="hamburger" class="hamburger" onclick="toggleSidebar()">☰</div>
+            <div class="header-right">
+                <div id="notifications" class="icon-btn" title="Notifications"
+                    onclick="toggleNotificationsDropdown(event)">
+                    🔔
+                    <span class="badge" id="notifCount">3</span>
+                    <div id="notificationsDropdown" class="notifications-dropdown">
+                        <h4>Unread Notifications</h4>
+                        <ul class="notificationList">
+                        </ul>
+                    </div>
+                </div>
+                <div class="icon-btn" title="Help" onclick="location.href='Help.html'">❓</div>
+                <div class="icon-btn" title="Account Settings" onclick="location.href='Settings.html'">⚙️</div>
+                <div class="icon-btn systemUpdate" title="Update">♻️</div>
+                <div class="icon-btn" title="Menu" onclick="toggleMenu(function (isVisible) {});">🛠️</div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <aside id="sidebar" class="sidebar">
+                <img src="../B2B-LAB-Logo.png" alt="Logo" class="logo" />
+                <nav>
+                    <a href="Dashboard.html" style="border-bottom: 3px solid #F15A29;"><span>
+                            <i class='bx bxs-home'></i></span>Dashboard</a>
+                    <a href="Courses.html"><span><i class='bx bxs-book-bookmark'></i></span> Courses</a>
+                    <a href="Certificates.html"><span><i class='bx bxs-book-content'></i></span> Certificates</a>
+                    <a href="Events.html"><span><i class='bx bxs-calendar'></i></span> Events</a>
+                    <a href="Forum.html"><span><i class='bx bxs-chat'></i></span> Forum</a>
+                    <a href="JobPortal.html"><span><i class='bx bxs-briefcase'></i></span> Job Portal</a>
+                    <a href="GigHzAI.html"><span><i class='bx bx-world'></i></span>AI</a>
+                </nav>
+            </aside>
+
+            <main class="main">
+
+                <section class="dashboard-header">
+                    <div>
+                        <div class="dashboard-left">
+                            <div>
+                                <h1 class="welcomeMessage">Welcome to Your Dashboard</h1>
+                                <p><span id="word"></span><span class="cursor"></span> in electronics with hands-on
+                                    projects and real-world
+                                    applications.</p>
+                            </div>
+                            <div class="dasbord-score-cards">
+                                <div class="stat-card" tabindex="0" role="region" aria-label="Points">
+                                    <div class="stat-number statPoints">1200</div>
+                                    <div class="stat-label">Points</div>
+                                </div>
+                                <div class="stat-card" tabindex="0" role="region" aria-label="Questionnaires Completed">
+                                    <div class="stat-number statQuestionnaires">45</div>
+                                    <div class="stat-label">Questionnaires</div>
+                                </div>
+                                <div class="stat-card" tabindex="0" role="region" aria-label="Assignments Completed">
+                                    <div class="stat-number statAssignments">28</div>
+                                    <div class="stat-label">Assignments</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboard-right">
+                            <div class="course-container dashboard-courses-container">
+                                <div class="course_cards dashboard-courses-cards btnExploreCourses">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- <section class="stats-cards" aria-label="User statistics"> -->
+                <!-- <div class="about-gighz-card">
+                        <h3>About us</h3>
+
+                        <video class="videoImage" controls>
+                            <source src="https://back2basics.engineering/Content/File?name=Others/learning.mp4"
+                                type="video/mp4">
+                        </video>
+
+                        <p>About GigHz, from Bargur, Krishnagiri.</p>
+                        <button class="btnDashboardType1 btnAboutus cardbutton">
+                            Know More
+                        </button>
+                    </div> -->
+                <!-- <div class="course-container">
+                        <div class="course_cards">
+
+                        </div>
+                    </div>
+                    <div class="dashboard_points_circles">
+                        <h1 class="welcomeMessage">Welcome to Your Dashboard</h1>
+                        <div class="dashboard_points_circles_container">
+                            <div class="stat-card" tabindex="0" role="region" aria-label="Points">
+                                <div class="stat-number statPoints">1200</div>
+                                <div class="stat-label">Points</div>
+                            </div>
+                            <div class="stat-card" tabindex="0" role="region" aria-label="Questionnaires Completed">
+                                <div class="stat-number statQuestionnaires">45</div>
+                                <div class="stat-label">Questionnaires</div>
+                            </div>
+                            <div class="stat-card" tabindex="0" role="region" aria-label="Assignments Completed">
+                                <div class="stat-number statAssignments">28</div>
+                                <div class="stat-label">Assignments</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section> -->
+
+                <div class="carousel">
+                    <div class="btn left" id="prev">❮</div>
+
+                    <div class="cards">
+                        <!-- Card 1 -->
+                        <div class="card image-card levelCard">
+                            <h3>User Level</h3>
+                            <!-- <img class="levelsImage"
+                                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=60"
+                                alt="Learning" loading="lazy" /> -->
+                            <div class="userStats">
+                                <!-- Stats Placeholder -->
+                            </div>
+                            <button class="btnDashboardType1 btnLevelInfo loopbtn">Info</button>
+                        </div>
+                        <div class="card image-card">
+                            <h3>Tools</h3>
+                            <div class="shortcut-grid">
+                                <!-- Tools Placeholder -->
+
+
+                            </div>
+                            <!-- <button class="btnDashboardType1 loopbtn">Open Tools</button> -->
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="card image-card job-portal-card">
+                            <h3>Job Portal</h3>
+                            <!-- <img class="alljobportalCardImage"
+                                src="https://i.pinimg.com/1200x/e4/19/9b/e4199b19c2201dd8f869969967daf3d7.jpg"
+                                alt="Learning" loading="lazy" /> -->
+                            <div class="dashboard-jobportal-container">
+
+                            </div>
+                            <!-- <p>Explore new courses and enhance your skills with our curated content.</p> -->
+                            <button class="btnDashboardType1 btnExploreJobs loopbtn">Explore</button>
+                            <!-- btnExploreCourses -->
+                        </div>
+                        <!-- <div class="card image-card">
+                            <h3>GigHz Courses</h3>
+                            <img class="allCoursesCardImage"
+                                src="https://images.unsplash.com/photo-1584697964403-52358a1a8e4f?auto=format&fit=crop&w=800&q=60"
+                                alt="Learning" loading="lazy" />
+                            <p>Explore new courses and enhance your skills with our curated content.</p>
+                            <button class="btnDashboardType1 btnExploreCourses loopbtn">Explore</button>
+                        </div> -->
+
+                        <!-- Card 3 -->
+
+                    </div>
+
+                    <div class="btn right" id="next">❯</div>
+                </div>
+                <!-- <div class="course-container">
+                    <div class="course_cards">
+
+                    </div>
+                </div> -->
+
+                <div class="dashboard-event-section">
+                    <h3>Events</h3>
+                    <div class="event-container">
+
+                    </div>
+                    <div class="dash-event-btn-cont">
+                        <a href="Events.html"><button class="btnDashboardType1 dash-event-btn">More Events</button></a>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    <script src="Layout.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        const words = ["Learn", "Design", "Innovate"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        const speed = 100;
+        const eraseSpeed = 70;
+        const delayBetweenWords = 2000;
+
+        const wordEl = document.getElementById("word");
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+
+            if (!isDeleting) {
+                wordEl.innerHTML = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, delayBetweenWords);
+                    return;
+                }
+            }
+            else {
+                wordEl.innerHTML = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+            }
+
+            setTimeout(typeEffect, isDeleting ? eraseSpeed : speed);
+        }
+
+        // Start
+        typeEffect();
+    </script>
+
+</body>
+
+</html>

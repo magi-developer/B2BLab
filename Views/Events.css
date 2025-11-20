@@ -1,0 +1,201 @@
+.events-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #F15A29;
+    margin: 10px auto 2rem;
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.26);
+    text-align: center;
+}
+
+/* ------------------------- */
+/*     GRID RESPONSIVE       */
+/* ------------------------- */
+.event-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+/* ONE COLUMN FOR SMALL DEVICES */
+@media (max-width: 900px) {
+    .event-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* SMALLER PADDING BETWEEN CARDS */
+@media (max-width: 768px) {
+    .events-section {
+        padding: 0 1rem 2rem;
+    }
+}
+
+/* ------------------------- */
+/*       EVENT CARD          */
+/* ------------------------- */
+.event-card {
+    position: relative;
+    background: #ffffff59;
+    /* border: 1px solid #fafafa; */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 14px rgb(51 130 214 / 37%);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    opacity: 0;
+    transform: scale(0.4);
+}
+
+.event-card.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+}
+
+/* ------------------------- */
+/*      IMAGE RESPONSIVE     */
+/* ------------------------- */
+.event-card img {
+    width: 100%;
+    height: auto;
+    max-height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Reduce image height for smaller screens */
+@media (max-width: 600px) {
+    .event-card img {
+        max-height: 200px;
+    }
+}
+
+/* ------------------------- */
+/*   DATE / ICON SECTION     */
+/* ------------------------- */
+.event-date-cont {
+    padding: 5px 0px;
+    border-radius: 10px 0 0 10px;
+}
+
+.event-date-cont p {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: #444;
+    margin: 7px 0;
+    gap: 10px;
+}
+
+.event-date-cont ion-icon {
+    font-size: 25px;
+    color: #F15A29;
+}
+
+/* ------------------------- */
+/*       TEXT CONTENT        */
+/* ------------------------- */
+.event-info {
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.event-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #555;
+    margin: 0;
+    padding: 0.6rem;
+    text-align: start;
+}
+
+.event-datetime,
+.event-location {
+    font-size: 0.95rem;
+    color: #000;
+}
+
+.event-agenda {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #555;
+    margin-top: 0.8rem;
+    line-height: 1.5;
+}
+
+/* RESPONSIVE TEXT */
+@media (max-width: 600px) {
+    .event-info {
+        padding: 1rem;
+    }
+
+    .event-title {
+        font-size: 1.2rem;
+    }
+
+    .event-agenda {
+        font-size: 0.95rem;
+    }
+}
+
+/* ------------------------- */
+/*        BUTTONS            */
+/* ------------------------- */
+.event-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+}
+
+/* MOBILE BUTTON FIX */
+@media (max-width: 450px) {
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.btn.register {
+    background-color: #F15A29;
+    color: white;
+}
+
+.btn.register:hover {
+    background-color: #af4521;
+}
+
+.btn.unregister {
+    background-color: #f8d7e0;
+    color: #F15A29;
+}
+
+.btn.unregister:hover {
+    background-color: #91381a;
+}

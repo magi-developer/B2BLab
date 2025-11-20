@@ -1,0 +1,55 @@
+.chapter-card {
+    background: #ffffff57;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgb(51 133 214 / 28%);
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+    position: relative;
+}
+
+.course-title {
+    font-size: 1.2rem;
+    color: #d63384;
+    margin-bottom: 0.5rem;
+}
+
+.chapter-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.short-desc {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 0.75rem;
+}
+
+.long-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.resources,
+.modules {
+    margin-bottom: 1.5rem;
+}
+
+.resources h3,
+.modules h3 {
+    font-size: 1.2rem;
+    color: #d63384;
+    margin-bottom: 0.75rem;
+}
+
+
+.module-item {
+    background: #fce4ec;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.6rem;
+    border: 1px solid #f3c5d7;
+}

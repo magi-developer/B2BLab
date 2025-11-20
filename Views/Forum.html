@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Back To Basics</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="Dashboard.css">
+    <link rel="stylesheet" href="Forum.css">
+    <script src="jquery.js"></script>
+    <script src="common.js"></script>
+    <script src="Forum.js"></script>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div id="hamburger" class="hamburger" onclick="toggleSidebar()">☰</div>
+            <div class="header-right">
+                <div id="notifications" class="icon-btn" onclick="toggleNotificationsDropdown(event)">
+                    🔔
+                    <span class="badge" id="notifCount">3</span>
+                    <div id="notificationsDropdown" class="notifications-dropdown">
+                        <h4>Unread Notifications</h4>
+                        <ul class="notificationList">
+                        </ul>
+                    </div>
+                </div>
+                <div class="icon-btn" title="Help" onclick="location.href='Help.html'">❓</div>
+                <div class="icon-btn" title="Account Settings" onclick="location.href='Settings.html'">⚙️</div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <aside id="sidebar" class="sidebar">
+                <img src="../B2B-LAB-Logo.png" alt="Logo" class="logo" />
+                <nav>
+                    <a href="Dashboard.html"><span><i class='bx bxs-home'></i></span>
+                        Dashboard</a>
+                    <a href="Courses.html"><span><i class='bx bxs-book-bookmark'></i></span> Courses</a>
+                    <a href="Certificates.html"><span><i class='bx bxs-book-content'></i></span> Certificates</a>
+                    <a href="Events.html"><span><i class='bx bxs-calendar'></i></span> Events</a>
+                    <a href="Forum.html" style="color: #FF561F; background: #fff;"><span><i
+                                class='bx bxs-chat'></i></span> Forum</a>
+                    <a href="JobPortal.html"><span><i class='bx bxs-briefcase'></i></span> Job Portal</a>
+                    <a href="GigHzAI.html"><span><i class='bx bx-world'></i></span>AI</a>
+                </nav>
+            </aside>
+
+            <main class="main">
+
+                <section class="forum">
+                    <!-- <h2>Community Forum</h2> -->
+                    <div class="forum-search-container">
+                        <div class="forum-search-box-container">
+                            <input type="text" placeholder="Search forum topics" class="forum-search-input">
+                            <button class="forum-search-btn"><i class='bx bx-search-alt'></i></button>
+                        </div>
+                        <button class="forum-search-back" onclick="javascript: location.href='forum.html'"
+                            style="display:none;"><i class='bx bx-refresh'></i></button>
+                    </div>
+                    <div id="topics-container">
+
+                    </div>
+                    <div class="forum-pagination">
+                        <button class="pager-btn pagerPrev" disabled>&laquo; Prev</button>
+                        <button class="pager-btn pagerNext">Next &raquo;</button>
+                    </div>
+                    <form class="new-topic-form model" id="newTopicForm" style="display: none;">
+                        <h3>Add New Topic</h3>
+                        <input type="text" id="topicTitle" placeholder="Topic or question" required maxlength="50" />
+                        <textarea id="topicDescription" placeholder="Description" required maxlength="1000"></textarea>
+                        <div class="commentActions">
+                            <button class="postTopic" type="submit">Post Topic</button>
+                            <button class="insertImageTopic" type="button">Insert Image</button>
+                            <button class="previewTopic" type="button">Preview</button>
+                        </div>
+                    </form>
+                </section>
+                <div class="forumPopUpGenerater">
+                   <ion-icon name="chatbubbles"></ion-icon>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    <script src="Layout.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

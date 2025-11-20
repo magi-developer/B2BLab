@@ -1,0 +1,110 @@
+.questionnaire {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(214, 51, 132, 0.1);
+}
+
+h2 {
+    color: #d63384;
+    margin-bottom: 1rem;
+}
+
+.question-block {
+    margin-bottom: 2rem;
+}
+
+.question-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding:7px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.file-upload {
+    padding: 0.75rem;
+    border-radius: 10px;
+    border: 1px dashed #f8c9dc;
+    width: 100%;
+    display:flex;
+    justify-content:space-between;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: #d63384;
+    color: white;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label {
+    cursor: pointer;
+}
+
+.toggle {
+    display: flex;
+    gap: 1rem;
+    padding: 7px;
+}
+
+button {
+    background-color: #d63384;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+    button:hover {
+        background-color: #c32174;
+    }
+
+input[type="radio"], input[type="checkbox"] {
+    accent-color: #d63384;
+}
+
+.greenHover:hover{
+    background:green;
+}
+
+.file-upload-button {
+    margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:14px;
+}
+
+.clearFileInput{
+    margin:6px;
+    cursor:pointer;
+}
+
+.selectedFile{
+    margin-left:10px;
+}

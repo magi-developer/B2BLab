@@ -1,0 +1,258 @@
+.help-support {
+    max-width: 98%;
+    margin: auto;
+    padding: 2rem;
+    /* background: #fff0f5;
+    border: 1.5px solid #f7c9dd;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(214, 51, 132, 0.08); */
+}
+
+.helpAndSupportHead {
+    width: 70%;
+    background: linear-gradient(60deg, #fbccbc, transparent);
+    margin: 30px auto;
+    padding: 40px;
+    border-radius: 20px;
+    display: grid;
+    gap: 1.2rem;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #f15a29;
+    margin: auto;
+    text-align: center;
+}
+
+.help-search {
+    display: flex;
+    gap: 1rem;
+    margin: auto;
+    justify-content: center;
+    width: 100%;
+}
+
+.parent-container {
+    width: 50%;
+    max-width: 50vw;
+    position: relative;
+    height: 230px;
+    display: flex;
+    background: #fff;
+}
+
+.help-tickets .help-search {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.parent-container .tickets {
+    color: #fff;
+    /* width: 100%;
+    height: 100%; */
+    z-index: 2;
+    background: linear-gradient(45deg, #d26d3e, #e7db3a);
+    padding:10px 20px;
+}
+.parent-container .tickets h3{
+    margin:10px 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+
+
+.help-search-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.help-search-input-container ion-icon {
+    font-size: 25px;
+}
+
+.help-search input,
+.help-search textarea {
+    flex: 1;
+    max-width: 400px;
+    padding: 0.6rem 1rem;
+    border: none;
+    outline: none;
+    /* border-radius: 8px; */
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.help-search textarea {
+    min-height: 100px;
+}
+
+.search-btn {
+    background: #f15a29;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #a53f1d;
+}
+
+.faq-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.faq-card {
+    background: #ffffff;
+    border: 1px solid #f2c2d9;
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(214, 51, 132, 0.05);
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+}
+
+.faq-card h3 {
+    color: #f15a29;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.faq-card p {
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.support-footer {
+    text-align: center;
+    margin: auto;
+}
+
+.contact-btn,
+.contact-btn-submit,
+.contact-btn-cancel,
+.contact-tickets,
+.contact-btn-back {
+    margin-top: 0.5rem;
+    background: #f15a29;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.contact-btn:hover {
+    background-color: #7c2e14;
+}
+
+.faq-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 80%;
+}
+
+.help-icon {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(#FF561F, #F23C67);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.help-icon ion-icon {
+    color: #fff;
+    font-size: 30px;
+    /* font-weight: 300; */
+}
+
+span.highlight2 {
+    background-color: #f15a29;
+    color: white;
+}
+
+.help-contact {
+    display: none;
+}
+
+.help-contact input,
+.help-contact textarea {
+    border: 1px solid #f15a29;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.help-tickets {
+    display: none;
+}
+
+.help-tickets table {
+    width: 100%;
+
+}
+
+.help-tickets table .col1 {
+    width: 120px;
+    font-weight: 600;
+    background-color: #ffe6f0;
+    vertical-align: top;
+    border-left: 1px solid #fcb6d6;
+}
+
+.help-tickets table .col2 {
+    text-align: justify;
+    border-left: 1px solid #ffe6f0;
+    border-right: 1px solid #fcb6d6;
+    vertical-align: top;
+}
+
+
+
+.help-tickets table .separator td {
+    height: 10px;
+}
+
+.help-tickets table .firstRow td {
+    border-top: 1px solid #fcb6d6;
+}
+
+.help-tickets table .lastRow td {
+    border-bottom: 1px solid #fcb6d6;
+}
+
+.help-tickets table .firstRow .col1 {
+    border-top-left-radius: 10px;
+}
+
+.help-tickets table .firstRow .col2 {
+    border-top-right-radius: 10px;
+}
+
+.help-tickets table .lastRow .col1 {
+    border-bottom-left-radius: 10px;
+}
+
+.help-tickets table .lastRow .col2 {
+    border-bottom-right-radius: 10px;
+}

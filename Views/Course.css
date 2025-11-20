@@ -1,0 +1,273 @@
+/* ==========================
+   MAIN WRAPPER
+========================== */
+.main {
+    /* background: #fdfdfd; */
+    padding: 2rem 1rem;
+}
+
+/* ==========================
+   COURSE CONTAINER
+========================== */
+.course-container {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ==========================
+   COURSE DETAILS & PROGRESS
+========================== */
+.course-details,
+.course-progress {
+    background: #ffffff3b;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow:0 6px 18px rgb(140 189 230 / 66%);
+    transition: transform 0.3s ease;
+}
+
+.course-details:hover,
+.course-progress:hover {
+    transform: translateY(-5px);
+}
+
+.course-details {
+    flex: 2;
+    min-width: 350px;
+}
+
+.course-progress {
+    flex: 1;
+    min-width: 300px;
+    max-width: 350px;
+    position: relative;
+}
+
+/* ==========================
+   COURSE DETAILS TEXT
+========================== */
+.course-details h2 {
+    font-size: 1.8rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+.course-details h3 {
+    color: #444;
+    margin: 10px 0;
+}
+
+/* ==========================
+   PROGRESS LIST
+========================== */
+.course-progress .progress-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-left: 30px;
+    position: relative;
+}
+
+/* Progress Items */
+.course-progress .progress-list li {
+    position: relative;
+    text-transform: capitalize;
+    padding-left: 50px;
+    margin-bottom: 10px;
+    color: #444;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Icon Circle */
+.course-progress .progress-list li .icon {
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border: none;
+    /* border-radius: 50%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background: transparent;
+    font-size: 1rem;
+}
+
+/* Completed */
+.course-progress .progress-list li.completed {
+    color: #f15a29;
+    font-weight: 600;
+}
+
+.course-progress .progress-list li.completed .icon i {
+    /* border: 2px solid #f15a29; */
+    color: #f15a29;
+}
+
+/* Current */
+.course-progress .progress-list li.current {
+    color: #038d25;
+    font-weight: 700;
+}
+
+.course-progress .progress-list li.current .icon i {    
+    /* border: 2px solid #29f15a; */
+    color: #038d25;
+}
+
+/* Upcoming */
+.course-progress .progress-list li.upcoming {
+    color: #aaa;
+}
+
+.course-progress .progress-list li.upcoming .icon i{
+    /* border: 2px dashed #ccc; */
+    color: #555;
+}
+
+/* Certificate */
+.course-progress .progress-list li.certLi {
+    color: #555;
+}
+
+.course-progress .progress-list li.certLi .icon {
+    color: #f15a29;
+    /* border: 2px solid #f15a29; */
+}
+
+/* ==========================
+   TOOLTIP STYLES
+========================== */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #f47a29;
+    font-weight: 600;
+}
+
+.tooltip::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(60deg, #f15a29, #f1295c);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
+.desc{
+    color:#555;
+}
+
+/* ==========================
+   LABEL STYLES
+========================== */
+.bxs-label {
+    transform: rotate(90deg);
+    font-size: 2.5rem;
+    color: #f15a29;
+    text-align: center;
+}
+
+/* ==========================
+   RESPONSIVE DESIGN
+========================== */
+
+/* Tablets (<= 1024px) */
+@media (max-width: 1024px) {
+    .course-container {
+        gap: 2rem;
+        justify-content: left;
+    }
+
+    .course-details {
+        flex: 1 1 60%;
+    }
+
+    .course-progress {
+        flex: 1 1 35%;
+
+    }
+}
+
+/* Mobile (<= 768px) */
+@media (max-width: 768px) {
+    .course-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+    }
+
+    .course-details,
+    .course-progress {
+        width: 100%;
+        min-width: unset;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-details h2 {
+        font-size: 1.5rem;
+    }
+
+    .course-progress .progress-list li {
+        font-size: 0.95rem;
+        padding-left: 45px;
+    }
+}
+
+/* Small Mobile (<= 480px) */
+@media (max-width: 480px) {
+    .main {
+        padding: 1rem 0.5rem;
+    }
+
+    .course-container{
+         justify-content: center;
+         align-items: center;
+    }
+
+    .course-details,
+    .course-progress {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+
+    .course-details h2 {
+        font-size: 1.3rem;
+    }
+
+    .course-details h3 {
+        font-size: 1rem;
+    }
+
+    .course-progress .progress-list li {
+        font-size: 0.9rem;
+        padding-left: 40px;
+    }
+
+    .course-progress .progress-list li .icon {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+}

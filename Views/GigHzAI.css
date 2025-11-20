@@ -1,0 +1,335 @@
+.events-section {
+    max-width: 92%;
+    margin: 0 auto;
+    padding: 1rem;
+    height: -webkit-calc(100% - 0px);
+}
+
+.main .events-section .aihead .section-title {
+    font-size: 0.7rem;
+    color: #f15a29;
+    text-align: start;
+    text-align: center;
+    margin: 0px;
+    margin-block: 10px !important;
+}
+
+.main .events-section .aihead h1 {
+    font-size: 1.5rem !important;
+}
+
+.main .events-section .aihead {
+    box-shadow: 05px 5px 5px #f8b098;
+    width: fit-content;
+    padding: 5px 20px;
+    margin: 10px auto;
+    border-radius: 20px;
+}
+
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.event-card {
+    background: #fff;
+    border: 1px solid #f3c5d7;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 14px rgba(214, 51, 132, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+}
+
+.event-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.event-info {
+    padding: 1.5rem;
+}
+
+.event-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #f15a29;
+    margin-bottom: 0.6rem;
+}
+
+.event-datetime,
+.event-location {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0.3rem;
+}
+
+.event-agenda {
+    font-size: 1rem;
+    color: #333;
+    margin-top: 0.8rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .event-info {
+        padding: 1rem;
+    }
+
+    .event-title {
+        font-size: 1.2rem;
+    }
+}
+
+.event-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn.register {
+    background-color: #f15a29;
+    color: white;
+}
+
+.btn.register:hover {
+    background-color: #ed8e6e;
+}
+
+.btn.unregister {
+    background-color: #f8d7e0;
+    color: #7f3016;
+}
+
+.btn.unregister:hover {
+    background-color: #f4d3c7;
+}
+
+.aiDiv .chat-footer,
+.aiDiv .chat-input {
+    transition: all .5s ease;
+}
+
+.aiDiv {
+    flex: 1;
+    background: #ffffff24;
+    overflow-y: auto;
+    height: calc(100% - 75px);
+    /* height: -webkit-calc(100% - 75px); */
+    height: 100%;
+    border-radius: 16px;
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    box-shadow: 0 0 20px rgb(182 212 255);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    background: #ffffff29;
+    overflow-y: auto;
+    height: 90%;
+    border-radius: 10px 10px 0 0;
+}
+
+.message {
+    margin-bottom: 12px;
+    padding: 10px 15px;
+    max-width: 90%;
+    clear: both;
+    word-wrap: break-word;
+    border: 1.2px solid #f7c9dd;
+}
+
+.bot {
+    background: linear-gradient(45deg, #ffeae479, #fadee574);
+    float: left;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    overflow-y: auto;
+    color: #000;
+}
+
+.user {
+    background: linear-gradient(45deg, #f15a29, #f1295c);
+    color: #fff;
+    float: right;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.message img {
+    max-width: 100%;
+    margin-top: 8px;
+    display: block;
+}
+
+.chat-input {
+    position: relative;
+    display: flex;
+    /* border: 1px solid black; */
+    padding: 10px;
+    display: flex;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-top: none;
+}
+
+.chat-input input {
+    flex: 1;
+    border: 1px solid #F15A29;
+    /* padding: 10px; */
+    font-size: 16px;
+    outline: none;
+    /* background: #f1f1f1; */
+    padding: 0.6rem 0.8rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    height: 70px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    padding: 10px 60px 10px 20px;
+    height: 55px;
+}
+
+.chat-input input::selection {
+    background: #d63384;
+    color: white;
+}
+
+.chat-input input:disabled {
+    border: 1px solid #999999 !important;
+    /* Grey border */
+    cursor: not-allowed;
+    /* Change cursor to indicate it's not clickable */
+}
+
+.chat-input button {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    font-size: 0.95rem;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    background: linear-gradient(45deg, #f15a29, #f1295c);
+    color: white;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.chat-input button:disabled {
+    background-color: #cccccc;
+    /* Light grey background */
+    color: #666666;
+    /* Darker grey text color */
+    border: 1px solid #999999;
+    /* Grey border */
+    cursor: not-allowed;
+    /* Change cursor to indicate it's not clickable */
+}
+
+
+.bot-typing {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.bot-typing span {
+    display: inline-block;
+    width: 8px;
+    /* Big dot */
+    height: 8px;
+    /* Big dot */
+    margin: 0 5px;
+    background-color: #d63384;
+    border-radius: 50%;
+    /* Round dot */
+    animation: bounceDots 3s infinite ease-in-out;
+}
+
+.bot-typing span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.bot-typing span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.bot-typing span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.aiDiv .message pre {
+    border-radius: 10px;
+    background: #fff;
+    overflow-x: auto;
+    padding: 10px;
+    color: #f1473d;
+}
+
+@keyframes bounceDots {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+        opacity: 0.3;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: #000000;
+}
+
+#chat-footer {
+    padding: 8px 35px;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    /* background: #fff; */
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main .events-section>h1 {
+    font-size: 30px !important;
+}
+
+@media (max-width: 768px) {
+    .aiDiv {}
+}

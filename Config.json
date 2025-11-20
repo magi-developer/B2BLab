@@ -1,0 +1,31 @@
+{
+	"server": "https://back2basics.engineering",
+	"version": "2.4",
+	"service": "http://localhost:8000",
+	"shortcuts": [
+		{
+			"id": 1,
+			"name": "Software 1",
+			"file": "",
+			"icon": "icon1.png"
+		},
+		{
+			"id": 2,
+			"name": "Software 2",
+			"file": "",
+			"icon": "icon2.png"
+		},
+		{
+			"id": 3,
+			"name": "Software 3",
+			"file": "",
+			"icon": "icon3.png"
+		},
+		{
+			"id": 4,
+			"name": "Software 4",
+			"file": "",
+			"icon": "icon1.png"
+		}
+	]
+}
