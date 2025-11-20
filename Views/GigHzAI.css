@@ -35,7 +35,7 @@
 
 .event-card {
     background: #fff;
-    border: 1px solid #f3c5d7;
+    border: 1px solid #f3d7c5;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 6px 14px rgba(214, 51, 132, 0.05);
@@ -113,7 +113,7 @@
 }
 
 .btn.unregister {
-    background-color: #f8d7e0;
+    background-color: #f8e3d7;
     color: #7f3016;
 }
 
@@ -158,7 +158,7 @@
     max-width: 90%;
     clear: both;
     word-wrap: break-word;
-    border: 1.2px solid #f7c9dd;
+    border: 1.2px solid #f7d6c9;
 }
 
 .bot {
@@ -200,6 +200,7 @@
     border: 1px solid #F15A29;
     /* padding: 10px; */
     font-size: 16px;
+    letter-spacing: 1px;
     outline: none;
     /* background: #f1f1f1; */
     padding: 0.6rem 0.8rem;
@@ -213,7 +214,7 @@
 }
 
 .chat-input input::selection {
-    background: #d63384;
+    background: #f15a29;
     color: white;
 }
 
@@ -268,7 +269,7 @@
     height: 8px;
     /* Big dot */
     margin: 0 5px;
-    background-color: #d63384;
+    background-color: #d64b33;
     border-radius: 50%;
     /* Round dot */
     animation: bounceDots 3s infinite ease-in-out;

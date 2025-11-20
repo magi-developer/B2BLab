@@ -151,6 +151,9 @@
 .course-progress-container {
     padding: 5px 20px;
 }
+.explore-course .card img{
+    margin: 0;
+}
 
 /* -------- Responsive Design -------- */
 
@@ -214,6 +217,9 @@
         font-size: 0.85rem;
         border-radius: 12px;
     }
+}
+h3{
+    text-transform: capitalize;
 }
 
 
@@ -283,7 +289,7 @@
 }
 
 .explore-course-section .explore-course .card h3 {
-    margin: 10px 0 5px;
+    margin: 5px 0 5px;
     padding: 5px 20px;
     font-size: 1.1rem;
     color: #fb5c7e;
@@ -297,6 +303,7 @@
     color: #555;
     font-size: 0.95rem;
     line-height: 1.4;
+    align-items: center;
 }
 
 .explore-course-section button {

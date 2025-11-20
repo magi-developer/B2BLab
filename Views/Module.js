@@ -36,7 +36,7 @@ var loadModule = function (id) {
                         completions = JSON.parse(completions);
                         var image = lmsServer + "/Content/File?name=" + encodeURIComponent("Modules/" + id + ".jpg");
                         var card = $(".chapter-card");
-                        var courseName = $("<a class='course-title' href='Chapter.html?id=" + chapter.id + "'><h4>⬅️" + chapter.name + "</h4></a>");
+                        var courseName = $("<a class='course-title' href='Chapter.html?id=" + chapter.id + "'><h4><i class='bx bx-left-arrow-alt'></i>" + chapter.name + "</h4></a>");
                         card.append(courseName);
                         var chapterName = $("<div class='chapter-title'>" + module.name + "</div>");
                         card.append(chapterName);
@@ -56,7 +56,7 @@ var loadModule = function (id) {
                                 var li;
                                 var url = lmsServer + "/Content/Resource?Course=" + course.id + "&Chapter=" + chapter.id + "&Module=" + id + "&FileName=" + encodeURIComponent(file) + "&token=" + encodeURIComponent(token);
                                 if (type == "video") {
-                                    li = $("<li>▶️ " + title + "</li>");
+                                    li = $("<li><img src='../icons/video_icon.png' width='40px'> " + title + "</li>");
                                     li.click(function () {
                                         openVideo(url, title, function (error) {
                                             if (error !== "") {
@@ -69,14 +69,14 @@ var loadModule = function (id) {
                                 }
                                 if (type == "document") {
                                     if (module.level > parseInt(userLevel) && userLevel > 0) {
-                                        li = $("<li><span>📘 " + title + "</span> 🔒</li>");
+                                        li = $("<li><span><img src='../icons/pdf_icon.png' width='40px'> " + title + "</span> 🔒</li>");
                                         li.click(function () {
                                             showOkayAlert("Locked", "This document will be unlocked at level '" + getUserLevel(module.level) + "'", function (button, dialog) {
                                                 dialog.remove();
                                             });
                                         });
                                     } else {
-                                        li = $("<li>📘 " + title + "</li>");
+                                        li = $("<li><img src='../icons/pdf_icon.png' width='40px'> " + title + "</li>");
                                         li.click(function () {
                                             openDocument(url, title, function (error) {
                                                 if (error !== "") {
@@ -126,7 +126,7 @@ var loadModule = function (id) {
                             putQuestionnaireBlock(card, module.lmsQuestionnaires, completions, message);
                         }
 
-                        var navigation = $("<div class='navigation'><a href='#' class='nav-btn leftNav'>⬅️ Previous Module</a><a href='#' class='nav-btn rightNav'>Next Module ➡️</a></div>");
+                        var navigation = $("<div class='navigation'><a href='#' class='nav-btn leftNav'><i class='bx bx-left-arrow-alt'></i> Previous Module</a><a href='#' class='nav-btn rightNav'>Next Module <i class='bx bx-right-arrow-alt' ></i></a></div>");
                         var previous = navigation.find(".leftNav");
                         if (previousModule == "") {
                             previous.addClass('disabled-link');

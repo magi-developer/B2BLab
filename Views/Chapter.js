@@ -37,7 +37,7 @@ var loadChapters = function (id) {
                         completions = JSON.parse(completions);
                         var image = lmsServer + "/Content/File?name=" + encodeURIComponent("Chapters/" + id + ".jpg");
                         var card = $(".chapter-card");
-                        var courseName = $("<a class='course-title' href='Course.html?id=" + course.id + "'><h4>⬅️" + course.name + "</h4></a>");
+                        var courseName = $("<a class='course-title' href='Course.html?id=" + course.id + "'><h4><i class='bx bx-left-arrow-alt'></i>" + course.name + "</h4></a>");
                         card.append(courseName);
                         var chapterName = $("<div class='chapter-title'>" + chapter.name + "</div>");
                         card.append(chapterName);
@@ -57,7 +57,7 @@ var loadChapters = function (id) {
                                 var li;
                                 var url = lmsServer + "/Content/Resource?Course=" + course.id + "&Chapter=" + id + "&FileName=" + encodeURIComponent(file) + "&token=" + encodeURIComponent(token);
                                 if (type == "video") {
-                                    li = $("<li>▶️ " + title + "</li>");
+                                    li = $("<li><img src='../icons/video_icon.png' width='40px'> " + title + "</li>");
                                     li.click(function () {
                                         openVideo(url, title, function (error) {
                                             if (error !== "") {
@@ -70,14 +70,14 @@ var loadChapters = function (id) {
                                 }
                                 if (type == "document") {
                                     if (chapter.level > userLevel && userLevel > 0) {
-                                        li = $("<li><span>📘 " + title + "</span> 🔒</li>");
+                                        li = $("<li><span><img src='../icons/pdf_icon.png' width='40px'> " + title + "</span> 🔒</li>");
                                         li.click(function () {
                                             showOkayAlert("Locked", "This document will be unlocked at level '" + getUserLevel(chapter.level) + "'", function (button, dialog) {
                                                 dialog.remove();
                                             });
                                         });
                                     } else {
-                                        li = $("<li>📘 " + title + "</li>");
+                                        li = $("<li><img src='../icons/pdf_icon.png' width='40px'> " + title + "</li>");
                                         li.click(function () {
                                             openDocument(url, title, function (error) {
                                                 if (error !== "") {
@@ -111,7 +111,7 @@ var loadChapters = function (id) {
                             card.append("<div class='resources'><h3>Modules</h3><div>");
                             var modules = $("<ul class='resource-list styled-list interactive-list'></ul>");
                             $.each(chapter.lmsDirectories, function (index, module) {
-                                var li = $("<li>📑 " + module.name + "</li>");
+                                var li = $("<li><img src='../icons/books.png' width='40px'> " + module.name + "</li>");
                                 li.click(function () {
                                     location.href = "Module.html?id=" + module.id;
                                 });
@@ -140,7 +140,7 @@ var loadChapters = function (id) {
                             putQuestionnaireBlock(card, chapter.lmsQuestionnaires, completions, message);
                         }
 
-                        var navigation = $("<div class='navigation'><a href='#' class='nav-btn leftNav'>⬅️ Previous Chapter</a><a href='#' class='nav-btn rightNav'>Next Chapter ➡️</a></div>");
+                        var navigation = $("<div class='navigation'><a href='#' class='nav-btn leftNav'><i class='bx bx-left-arrow-alt'></i> Previous Chapter</a><a href='#' class='nav-btn rightNav'>Next Chapter <i class='bx bx-right-arrow-alt' ></i></a></div>");
                         var previous = navigation.find(".leftNav");
                         if (previousChapter == "") {
                             previous.addClass('disabled-link');

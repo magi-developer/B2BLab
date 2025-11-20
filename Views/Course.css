@@ -125,7 +125,7 @@
 
 /* Upcoming */
 .course-progress .progress-list li.upcoming {
-    color: #aaa;
+    color: #555;
 }
 
 .course-progress .progress-list li.upcoming .icon i{

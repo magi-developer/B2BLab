@@ -13,7 +13,7 @@ var getHelp = function (callback) {
         },
         success: function (response) {
             callback(response);
-            console.log(response)
+            // console.log(response)
         },
         error: function (xhr, status, error) {
             var e = eval("(" + xhr.responseText + ")");
@@ -41,22 +41,37 @@ var loadPage = function (userToken) {
     getData("notifications", loadNotifications);
     getHelp(function (items) {
         $.each(items, function (index, item) {
-            
 
-            var itemDiv = $("<div class='faq-card'><div class='help-icon'><ion-icon name='document-text-outline'></ion-icon></div><div class='faq-date'><h3>" + item.title +
-                "</h3><span>" + item.date + "</span><p class='model' style='display:none;'>" + item.details + "</p></div>");
-            itemDiv.find('.faq-date').click(function () {
-                var p = $(itemDiv).find('p');
-                p.fadeIn();
-                $('.overlay').fadeIn();
-                // if (p.is(":visible")) {
-                //     p.fadeOut();
-                // } else {
-                //     p.fadeIn();
-                // }
-            });
-            $('.faq-list').append(itemDiv);
+            let helpDetails = JSON.stringify(item);
+            // console.log('------------------')
+            // console.log(item)
+            // console.log('------------------')
+
+            var itemDiv = $("<div class='faq-card' data-item='" + helpDetails + "'><div class='help-icon'><ion-icon name='document-text-outline'></ion-icon></div><div class='faq-date'><h3>" + item.title +
+                "</h3><span>" + item.date + "</span></div>");
+
+            //     itemDiv.find('.faq-date').click(function () {
+            //         // var p = $(itemDiv).find('p');
+            //         // p.fadeIn();
+            //         let item = $(this).attr('data-item');
+            //         console.log(item);
+            //         $('.overlay').fadeIn();
+            //         // if (p.is(":visible")) {
+            //         //     p.fadeOut();
+            //         // } else {
+            //         //     p.fadeIn();
+            //         // }
+            //     });
+                $('.faq-list').append(itemDiv);
         });
+
+        $('.faq-card').click(function () {
+            console.log('click')
+            let item =JSON.parse($(this).attr('data-item'));
+            console.log(item);
+            
+        })
+
         enableSpeech($('.faq-list').find('p'));
     });
 
@@ -215,6 +230,29 @@ var loadPage = function (userToken) {
                 showLoading("Loading your tickets.. Please wait.");
             },
             success: function (response) {
+                response = [
+                    {
+                        "createdOn": "October 17, 2025",
+                        "details": "test",
+                        "isResolved": "No",
+                        "resolvedBy": "",
+                        "subject": "test"
+                    },
+                    {
+                        "createdOn": "October 20, 2025",
+                        "details": "issue with PCB layout",
+                        "isResolved": "No",
+                        "resolvedBy": "",
+                        "subject": "PCB Design Issue"
+                    },
+                    {
+                        "createdOn": "October 22, 2025",
+                        "details": "resource upload check",
+                        "isResolved": "Yes",
+                        "resolvedBy": "Admin",
+                        "subject": "Upload Verification"
+                    }
+                ]
                 callback(response);
                 // console.log(response)
             },

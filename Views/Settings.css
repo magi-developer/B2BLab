@@ -85,13 +85,14 @@
 }
 
 .settings-form {
-    background: #fff;
+    background: #ffffff1c;
     border: 2px solid #f15a29;
     border-radius: 10px;
     max-height: 75vh;
     overflow-y: auto;
     width: calc(100% - 260px);
     padding: 20px;
+    box-shadow: 0 0 15px #00aeef2b;
 }
 
 .settings-card {
@@ -123,10 +124,12 @@
     border: 1px solid #ddd;
     font-size: 1rem;
     outline: none;
+    background: #dfdfdf9e;
 }
 
 .settings-form .canBeChanged {
     outline: 1px solid #f15a29;
+    background: #fff;
 }
 
 .settings-form input::placeholder {
@@ -178,10 +181,10 @@
 /* Profile Section */
 /* ===================== */
 .profile-container {
-    background: #fff;
+    background: #ffffff1c;
     border-radius: 16px;
     padding: 30px;
-    box-shadow: 0 8px 16px rgba(214, 51, 132, 0.2);
+    box-shadow: 0 0 15px #00aeef2b;
     text-align: center;
     width: 250px;
     display: flex;

@@ -10,9 +10,9 @@
 
 .helpAndSupportHead {
     width: 70%;
-    background: linear-gradient(60deg, #fbccbc, transparent);
-    margin: 30px auto;
-    padding: 40px;
+    /* background: linear-gradient(60deg, #bccffb61, #ffffff5c); */
+    margin: 0px auto 40px;
+    /* padding: 40px; */
     border-radius: 20px;
     display: grid;
     gap: 1.2rem;
@@ -54,10 +54,11 @@
     height: 100%; */
     z-index: 2;
     background: linear-gradient(45deg, #d26d3e, #e7db3a);
-    padding:10px 20px;
+    padding: 10px 20px;
 }
-.parent-container .tickets h3{
-    margin:10px 0;
+
+.parent-container .tickets h3 {
+    margin: 10px 0;
     text-align: center;
     text-transform: capitalize;
 }
@@ -114,18 +115,22 @@
 }
 
 .faq-card {
-    background: #ffffff;
-    border: 1px solid #f2c2d9;
+    background: #ffffff47;
+    /* border: 1px solid #f2c2d9; */
     border-radius: 12px;
     padding: 1.2rem 1.5rem;
-    box-shadow: 0 4px 12px rgba(214, 51, 132, 0.05);
+    box-shadow: 0 4px 12px rgb(51 160 214 / 36%);
     display: flex;
     justify-content: space-between;
     height: fit-content;
+    transition: all 0.5s ease;
+}
+.faq-card:hover{
+    transform: translateY(-5px);
 }
 
 .faq-card h3 {
-    color: #f15a29;
+    color: #444;
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
 }
@@ -168,13 +173,14 @@
     font-size: 0.8rem;
     cursor: pointer;
     width: 80%;
+    color: #555;
 }
 
 .help-icon {
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    background: linear-gradient(#FF561F, #F23C67);
+    background: #f15a29;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -255,4 +261,18 @@ span.highlight2 {
 
 .help-tickets table .lastRow .col2 {
     border-bottom-right-radius: 10px;
+}
+
+
+/*  */
+
+.contact-btn,
+.contact-tickets {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.contact-tickets {
+    bottom: 80px;
 }

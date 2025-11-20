@@ -57,7 +57,7 @@
                     <h2 class="section-title">Help & Support</h2>
                     <div class="helpAndSupportHead">
                         <div class="support-footer">
-                            <p>Still need help?</p>
+                            <!-- <p>Still need help?</p>     -->
                             <button class="contact-btn">Contact Support</button>
                             <button class="contact-tickets">My Tickets</button>
                         </div>
@@ -79,21 +79,7 @@
 
                 </section>
 
-                <section class="help-support help-contact model">
-                    <h2 class="section-title">How can we help?</h2>
-                    <div class="help-search">
-                        <input type="text" placeholder="Subject" id="text-subject" maxlength="50" />
 
-                    </div>
-                    <div class="help-search">
-                        <textarea placeholder="Issue in detail" id="text-issue" maxlength="1000"></textarea>
-                    </div>
-                    <div class="support-footer">
-                        <p>We will get back to you soon</p>
-                        <button class="contact-btn-submit">Submit</button>
-                        <button class="contact-btn-cancel">Cancel</button>
-                    </div>
-                </section>
 
                 <section class="help-support help-tickets">
                     <h2 class="section-title">My Tickets</h2>
@@ -106,9 +92,28 @@
                 </section>
 
             </main>
+
         </div>
-        <div class="overlay"></div>
+        <section class="help-support help-contact model">
+            <h2 class="section-title">How can we help?</h2>
+            <div class="help-search">
+                <input type="text" placeholder="Subject" id="text-subject" maxlength="50" />
+
+            </div>
+            <div class="help-search">
+                <textarea placeholder="Issue in detail" id="text-issue" maxlength="1000"></textarea>
+            </div>
+            <div class="support-footer">
+                <p>We will get back to you soon</p>
+                <button class="contact-btn-submit">Submit</button>
+                <button class="contact-btn-cancel">Cancel</button>
+            </div>
+        </section>
     </div>
+    <div class="help-model model">
+
+    </div>
+    <!-- <div class="overlay"></div> -->
     <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
     <script src="Layout.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
