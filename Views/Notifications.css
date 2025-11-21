@@ -2,9 +2,9 @@
     max-width: 95%;
     margin: 0 auto;
     padding: 20px 40px;
-    background: #fff;
+    /* background: #fff; */
     border-radius: 16px;
-    box-shadow: 0 6px 18px rgba(214, 51, 132, 0.08);
+    /* box-shadow: 0 6px 18px rgba(214, 51, 132, 0.08); */
 }
 
 .section-title {
@@ -43,7 +43,7 @@
     color: white;
 }
 
-.notification-header > div:has(.filter-btn.active) {
+.notification-header>div:has(.filter-btn.active) {
     border-bottom: 2px solid #F15A29;
     height: 80%;
 }
@@ -64,13 +64,16 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background: #fff;
+    background: #ffffff4a;
     width: 80%;
     border-radius: 12px;
     padding: 1rem 1.2rem;
-    /* box-shadow: 0px 0px 5px #bc4307; */
-    border: 2px solid;
-    transition: background 0.3s;
+    box-shadow: 0px 0px 15px #5586e759;
+    /* border: 2px solid; */
+    transition: all 0.3s ease;
+}
+.notification-card:hover{
+    transform: translateY(-7px);
 }
 
 .notification-card.unread {
@@ -101,20 +104,21 @@
     color: #777;
 }
 
-.notification-meta > p {
+.notification-meta>p {
     margin: 0;
     padding: 5px;
 }
 
-.notification-meta > p:nth-child(2) {
+.notification-meta>p:nth-child(2) {
     font-size: 12px;
 }
-.notification-meta > p:nth-child(1) {
+
+.notification-meta>p:nth-child(1) {
     font-size: 18px;
     font-weight: 500;
-   background:linear-gradient(60deg, #f15a29, #f1295c) ;
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
+    background: linear-gradient(60deg, #f15a29, #f1295c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* ----------------------------------------- */
@@ -136,7 +140,7 @@
 .slider {
     position: absolute;
     cursor: pointer;
-    background-color: #ccc;
+    background-color: #ffffff;
     border-radius: 30px;
     top: 0;
     left: 0;
@@ -157,11 +161,11 @@
     transition: 0.4s;
 }
 
-.theme-toggle input:checked + .slider {
+.theme-toggle input:checked+.slider {
     background-color: #F15A29;
 }
 
-.theme-toggle input:checked + .slider::before {
+.theme-toggle input:checked+.slider::before {
     transform: translateX(24px);
     background-color: #fff;
 }
@@ -175,10 +179,12 @@
     .notification-header {
         width: 80%;
     }
+
     .filter-btn {
         font-size: 15px;
         padding: 6px 10px;
     }
+
     .notification-card {
         width: 90%;
     }

@@ -54,9 +54,9 @@
     width: 100%;
 }
 
-.event-agenda .speaker-inline {
+/* .event-agenda .speaker-inline {
     color: rgb(41 168 241);
-}
+} */
 
 .event-title {
     font-size: 20px;
@@ -81,7 +81,7 @@
 }
 
 .event-datetime ion-icon {
-    color: rgb(41 168 241);
+    color: #f15a29;
     font-size: 20px;
 }
 

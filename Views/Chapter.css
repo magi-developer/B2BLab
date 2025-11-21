@@ -1,5 +1,5 @@
 .chapter-card {
-    background: #ffffff57;
+    background: #e6efff;
     border-radius: 16px;
     box-shadow: 0 6px 18px rgb(51 133 214 / 28%);
     padding: 2rem;
@@ -8,29 +8,41 @@
     position: relative;
 }
 
-.course-title {
+.course-title{
     font-size: 1.2rem;
-    color: #d63384;
+    color: #f15a29;
     margin-bottom: 0.5rem;
+    /* background: #f15a29; */
 }
+/* .course-title.h4 {
+    background:#f15a29;
+} */
 
 .chapter-title {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     font-weight: bold;
+    color: #444;
 }
 
 .short-desc {
     font-size: 1rem;
     font-weight: 500;
     color: #444;
-    margin-bottom: 0.75rem;
+    /* margin-bottom: 0.75rem; */
+    padding: 7px 5px;
+    display: flex;
+    align-items: center;
 }
 
 .long-desc {
     font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    color: #555;
+    /* margin-bottom: 1.5rem; */
+    padding: 7px 5px;
+    display: flex;
+    align-items: center;
 }
 
 .resources,
@@ -41,7 +53,7 @@
 .resources h3,
 .modules h3 {
     font-size: 1.2rem;
-    color: #d63384;
+    color: #444;
     margin-bottom: 0.75rem;
 }
 

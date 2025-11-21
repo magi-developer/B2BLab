@@ -97,9 +97,11 @@ var createUI = function (response) {
             error: function (xhr, status, error) {
                 var e = eval("(" + xhr.responseText + ")");
                 if (e == undefined) {
+                    console.log('error in if')
                     e = "Unable to update the profile, the server is not reachable.";
                     showError(e);
                 } else {
+                    console.log('error in else')
                     showError("Error: " + e.title + ". Click <a class='tryAgainLink' href='Login.html'> here </a> to try again.");
                 }
             },

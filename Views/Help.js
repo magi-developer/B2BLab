@@ -13,7 +13,7 @@ var getHelp = function (callback) {
         },
         success: function (response) {
             callback(response);
-            console.log(response)
+            // console.log(response)
         },
         error: function (xhr, status, error) {
             var e = eval("(" + xhr.responseText + ")");
@@ -41,22 +41,50 @@ var loadPage = function (userToken) {
     getData("notifications", loadNotifications);
     getHelp(function (items) {
         $.each(items, function (index, item) {
-            
 
-            var itemDiv = $("<div class='faq-card'><div class='help-icon'><ion-icon name='document-text-outline'></ion-icon></div><div class='faq-date'><h3>" + item.title +
-                "</h3><span>" + item.date + "</span><p class='model' style='display:none;'>" + item.details + "</p></div>");
-            itemDiv.find('.faq-date').click(function () {
-                var p = $(itemDiv).find('p');
-                p.fadeIn();
-                $('.overlay').fadeIn();
-                // if (p.is(":visible")) {
-                //     p.fadeOut();
-                // } else {
-                //     p.fadeIn();
-                // }
-            });
+            let helpDetails = JSON.stringify(item);
+            // console.log('------------------')
+            // console.log(item)
+            // console.log('------------------')
+
+            var itemDiv = $("<div class='faq-card' data-item='" + helpDetails + "'><div class='help-icon'><ion-icon name='document-text-outline'></ion-icon></div><div class='faq-date'><h3>" + item.title +
+                "</h3><span>" + item.date + "</span></div>");
+
+            //     itemDiv.find('.faq-date').click(function () {
+            //         // var p = $(itemDiv).find('p');
+            //         // p.fadeIn();
+            //         let item = $(this).attr('data-item');
+            //         console.log(item);
+            //         $('.overlay').fadeIn();
+            //         // if (p.is(":visible")) {
+            //         //     p.fadeOut();
+            //         // } else {
+            //         //     p.fadeIn();
+            //         // }
+            //     });
             $('.faq-list').append(itemDiv);
         });
+
+        $('.faq-card').click(function () {
+            // console.log('click')
+            $('.help-model').empty();
+            let item = JSON.parse($(this).attr('data-item'));
+            console.log(item);
+
+            let data = `
+                <div class="popup-help-header">
+                    <h3 class="popup-title">${item.title}</h3>
+                    <p class="popup-datetime">${item.date}</p>
+                </div>
+                <div>
+                    <p class="popup-helpdesc">${item.details}</p>
+                </div>
+            `;
+            $('.help-model').append(data).fadeIn();
+            $('.overlay').fadeIn();
+
+        })
+
         enableSpeech($('.faq-list').find('p'));
     });
 
@@ -82,78 +110,42 @@ var loadPage = function (userToken) {
 
     $('.contact-tickets').click(function () {
         loadMyTickets(function (response) {
-            // console.log(response)
-            $('.help-tickets').find('.help-search').empty();
+
+            $('.help-search').empty();
             $('.help-support').hide();
             $('.help-tickets').show();
             $('.help-contact').hide();
 
-            var table = $("<table cellspacing='0' cellpadding='10'></table>");
-            response = response.reverse();
-            $.each(response, function (index, item) {
-                let ticketContainer = '';
-                if (index == 0) {
-                    table.append("<tr class='separator'><td></td><td></td></tr>");
-                }
-                var tr = $("<tr class='firstRow'></tr>");
-                tr.append("<td class='col1'>Subject</td>");
-                tr.append("<td class='col2'>" + item.subject + "</td>");
-                table.append(tr);
-
-                tr = $("<tr></tr>");
-                tr.append("<td class='col1'>Details</td>");
-                tr.append("<td class='col2'>" + item.details + "</td>");
-                table.append(tr);
-
-                tr = $("<tr></tr>");
-                tr.append("<td class='col1'>Created On</td>");
-                tr.append("<td class='col2'>" + item.createdOn + "</td>");
-                table.append(tr);
-
-                tr = $("<tr></tr>");
-                tr.append("<td class='col1'>Is Resolved</td>");
-                tr.append("<td class='col2'>" + item.isResolved + "</td>");
-                table.append(tr);
-
-                tr = $("<tr class='lastRow'></tr>");
-                tr.append("<td class='col1'>Resolved By</td>");
-                tr.append("<td class='col2'>" + item.resolvedBy + "</td>");
-                table.append(tr);
-
-                table.append("<tr class='separator'><td></td><td></td></tr>");
-
-                let ticketResolved = item.isResolved.toLowerCase() == 'yes' ? "<p class='ticket-isresolved yes'>It's Resolved By " + item.resolvedBy + "</p>" : "<p class='ticket-isresolved no'>It's Not Resolved</p>";
-                let d = new Date(item.createdOn);
-
-                let day = d.getDate();
-                let year = d.getFullYear();
-
-                // Month short names
-                let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-                let formatted = `${day}-${months[d.getMonth()]}<br>${year}`;
-
-                ticketContainer += `
-                    <div class='parent-container'>
-                        <div>
-                            <div class="ticket-createdon">${formatted}</div>
-                        </div>
-                        <div class='tickets'>
-                            <h3>${item.subject}</h3>
-                            <div class='ticket-body'>
-                                <p>${item.details}</p>
-                                ${ticketResolved}
-                            </div>
-                        </div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                `
-
-                $('.help-tickets').find('.help-search').append(ticketContainer);
+            let html = `
+            <table id="ticketTable" cellspacing='0' cellpadding='10'>
+                <tr>
+                    <th>Subject</th>
+                    <th>Details</th>
+                    <th>Created On</th>
+                    <th>Is Resolved</th>
+                    <th>Resolved By</th>
+                </tr>
+        `;
+        
+        response.reverse().forEach(item => {
+                console.log(item.isResolved)
+                html += `
+                <tr class="ticket_tr">
+                    <td>${item.subject}</td>
+                    <td>${item.details}</td>
+                    <td>${item.createdOn}</td>
+                    <td class="${item.isResolved == 'Yes' ? 'resolved-yes':'resolved-no'}">${item.isResolved}</td>
+                    <td>${item.resolvedBy}</td>
+                </tr>
+            `;
             });
+
+            html += `</table>`;
+
+            $('.help-search').append(html);
         });
     });
+
 
 
     $('.contact-btn-back').click(function () {
@@ -215,6 +207,29 @@ var loadPage = function (userToken) {
                 showLoading("Loading your tickets.. Please wait.");
             },
             success: function (response) {
+                response = [
+                    {
+                        "createdOn": "October 17, 2025",
+                        "details": "test",
+                        "isResolved": "No",
+                        "resolvedBy": "",
+                        "subject": "test"
+                    },
+                    {
+                        "createdOn": "October 20, 2025",
+                        "details": "issue with PCB layout",
+                        "isResolved": "No",
+                        "resolvedBy": "",
+                        "subject": "PCB Design Issue"
+                    },
+                    {
+                        "createdOn": "October 22, 2025",
+                        "details": "resource upload check",
+                        "isResolved": "Yes",
+                        "resolvedBy": "Admin",
+                        "subject": "Upload Verification"
+                    }
+                ]
                 callback(response);
                 // console.log(response)
             },

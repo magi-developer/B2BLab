@@ -58,7 +58,7 @@ var loadCourse = function () {
                                                 });
                                             }
                                             if (type == "document") {
-                                                li = $("<li><img src='../icons/pdf_icon.png' width='40px'> " + title + "</li>");
+                                                li = $("<li><img src='../icons/books.png' width='40px'> " + title + "</li>");
                                                 li.click(function () {
                                                     var url = lmsServer + "/Content/Resource?Course=" + id + "&FileName=" + encodeURIComponent(file) + "&token=" + encodeURIComponent(token);
                                                     openDocument(url, title, function (error) {
@@ -92,7 +92,7 @@ var loadCourse = function () {
                                         element.append("<h3>Chapters</h3>");
                                         var chapters = $("<ul class='resource-list styled-list interactive-list'></ul>");
                                         $.each(lmsDirectory.lmsDirectories, function (index, chapter) {
-                                            var li = $("<li><img src='../icons/test.png' width='40px'> " + chapter.name + "</li>");
+                                            var li = $("<li><img src='../icons/books.png' width='40px'> " + chapter.name + "</li>");
                                             li.click(function () {
                                                 location.href = "Chapter.html?id=" + chapter.id;
                                             });

@@ -1,7 +1,7 @@
 .chapter-card {
-    background: #fff;
+    background: #e6efff;
     border-radius: 16px;
-    box-shadow: 0 6px 18px rgba(214, 51, 132, 0.1);
+    box-shadow: 0 6px 18px rgb(51 115 214 / 58%);
     padding: 2rem;
     max-width: 900px;
     margin: auto;
@@ -10,7 +10,7 @@
 
 .course-title {
     font-size: 1.2rem;
-    color: #d63384;
+    color: #f15a29;
     margin-bottom: 0.5rem;
 }
 
@@ -18,6 +18,7 @@
     font-size: 1.8rem;
     margin-bottom: 1rem;
     font-weight: bold;
+    color: #444;
 }
 
 .short-desc {
@@ -25,24 +26,32 @@
     font-weight: 500;
     color: #444;
     margin-bottom: 0.75rem;
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
 }
 
 .long-desc {
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
+    padding: 10px 5px;
+    color: #555;
+    display: flex;
+    align-items: center;
 }
 
-.resources, .modules {
+.resources,
+.modules {
     margin-bottom: 1.5rem;
 }
 
-    .resources h3,
-    .modules h3 {
-        font-size: 1.2rem;
-        color: #d63384;
-        margin-bottom: 0.75rem;
-    }
+.resources h3,
+.modules h3 {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 0.75rem;
+}
 
 
 .module-item {
@@ -51,4 +60,8 @@
     border-radius: 10px;
     margin-bottom: 0.6rem;
     border: 1px solid #f3c5d7;
+}
+.styled-list li span{
+    display: flex;
+    align-items: center;
 }

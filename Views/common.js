@@ -192,7 +192,7 @@ var putReferences = function (card, lmsReferences) {
     $.each(lmsReferences, function (index, reference) {
         var li;
         if (reference.isLink) {
-            li = $("<li><img src='../icons/books.png' width='40px'> &nbsp;<a class='themed-link' target='_blank' href='" + reference.content + "'>" + reference.content + "</a></li>");
+            li = $("<li><img src='../icons/link.png' width='40px'> &nbsp;<a class='themed-link' target='_blank' href='" + reference.content + "'>" + reference.content + "</a></li>");
         }
         if (reference.isHTML) {
             li = $(reference.content);
@@ -245,7 +245,7 @@ var putAssignmentBlock = function (card, lmsAssignments, completions, levelMessa
             message = levelMessage;
         }
         
-        var li = $("<li class='" + completionClass + "'><span class='liName'>📝 " + assignment.assignmentName + "</span>" + completionElement + "</li>");
+        var li = $("<li class='" + completionClass + "'><span class='liName'><img src='../icons/test.png' width='40px'> " + assignment.assignmentName + "</span>" + completionElement + "</li>");
         if (allowEntering == true) {
             li.click(function () {
                 showYesNoAlert("Start the assignment?", "<h4>" + assignment.assignmentName + "</h4>" + assignment.description, function () {
@@ -259,7 +259,7 @@ var putAssignmentBlock = function (card, lmsAssignments, completions, levelMessa
                 li.click(function () {
                     var callbacks = [];
                     callbacks.push({
-                        text: "ℹ️ See Remarks",
+                        text: "See Remarks",
                         callback: function (button, element) {
                             element.remove();
                             location.href = "Remarks.html?id=" + completionId;
@@ -336,7 +336,7 @@ var putQuestionnaireBlock = function (card, lmsQuestionnaires, completions, leve
             allowEntering = false;
             message = levelMessage;
         }
-        var li = $("<li class='" + completionClass + "'><span class='liName'>📋 " + questionnaire.questionnaireName + "</span>" + completionElement + "</li>");
+        var li = $("<li class='" + completionClass + "'><span class='liName'><span class='liName'><img src='../icons/test.png' width='40px'> " + questionnaire.questionnaireName + "</span>" + completionElement + "</li>");
         if (allowEntering == true) {
             li.click(function () {
                 showYesNoAlert("Start answering the questionnaire?", "<h4>" + questionnaire.questionnaireName + "</h4>Minimum correct answeres required is <b>" + questionnaire.minimumAnswersRequired + "</b>.", function () {
