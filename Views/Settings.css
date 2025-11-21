@@ -76,17 +76,18 @@
 
 .section-title {
     font-size: 1.8rem;
-    background: linear-gradient(#f15a29, #f1295c);
+    /* background: linear-gradient(#f15a29, #f1295c);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: #d63384;
+    -webkit-text-fill-color: transparent; */
+    color: #f15a29;
+    /* color: #d63384; */
     margin: 5px;
     text-align: center;
 }
 
 .settings-form {
     background: #ffffff1c;
-    border: 2px solid #f15a29;
+    /* border: 2px solid #f15a29; */
     border-radius: 10px;
     max-height: 75vh;
     overflow-y: auto;
@@ -159,13 +160,12 @@
 
 .save-btn,
 .changePassword-btn {
-    background: linear-gradient(#f15a29, #f1295c);
-    ;
+    background: #f15a29;
     color: white;
 }
 
 .save-btn:hover {
-    background: linear-gradient(#f1a48a, #f193aa);
+    background: #f15a29;
 }
 
 .cancel-btn {
@@ -213,7 +213,8 @@
     justify-content: center;
     gap: 10px;
 }
-.profile-btn-container{
+
+.profile-btn-container {
     position: relative;
 }
 

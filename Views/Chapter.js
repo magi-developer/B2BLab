@@ -70,14 +70,14 @@ var loadChapters = function (id) {
                                 }
                                 if (type == "document") {
                                     if (chapter.level > userLevel && userLevel > 0) {
-                                        li = $("<li><span><img src='../icons/pdf_icon.png' width='40px'> " + title + "</span> 🔒</li>");
+                                        li = $("<li><span><img src='../icons/books.png' width='40px'> " + title + "</span> 🔒</li>");
                                         li.click(function () {
                                             showOkayAlert("Locked", "This document will be unlocked at level '" + getUserLevel(chapter.level) + "'", function (button, dialog) {
                                                 dialog.remove();
                                             });
                                         });
                                     } else {
-                                        li = $("<li><img src='../icons/pdf_icon.png' width='40px'> " + title + "</li>");
+                                        li = $("<li><img src='../icons/books.png' width='40px'> " + title + "</li>");
                                         li.click(function () {
                                             openDocument(url, title, function (error) {
                                                 if (error !== "") {

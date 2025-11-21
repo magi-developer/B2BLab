@@ -336,7 +336,7 @@ var putQuestionnaireBlock = function (card, lmsQuestionnaires, completions, leve
             allowEntering = false;
             message = levelMessage;
         }
-        var li = $("<li class='" + completionClass + "'><span class='liName'>📋 " + questionnaire.questionnaireName + "</span>" + completionElement + "</li>");
+        var li = $("<li class='" + completionClass + "'><span class='liName'><span class='liName'><img src='../icons/test.png' width='40px'> " + questionnaire.questionnaireName + "</span>" + completionElement + "</li>");
         if (allowEntering == true) {
             li.click(function () {
                 showYesNoAlert("Start answering the questionnaire?", "<h4>" + questionnaire.questionnaireName + "</h4>Minimum correct answeres required is <b>" + questionnaire.minimumAnswersRequired + "</b>.", function () {

@@ -125,7 +125,8 @@
     height: fit-content;
     transition: all 0.5s ease;
 }
-.faq-card:hover{
+
+.faq-card:hover {
     transform: translateY(-5px);
 }
 
@@ -213,57 +214,6 @@ span.highlight2 {
     display: none;
 }
 
-.help-tickets table {
-    width: 100%;
-
-}
-
-.help-tickets table .col1 {
-    width: 120px;
-    font-weight: 600;
-    background-color: #ffe6f0;
-    vertical-align: top;
-    border-left: 1px solid #fcb6d6;
-}
-
-.help-tickets table .col2 {
-    text-align: justify;
-    border-left: 1px solid #ffe6f0;
-    border-right: 1px solid #fcb6d6;
-    vertical-align: top;
-}
-
-
-
-.help-tickets table .separator td {
-    height: 10px;
-}
-
-.help-tickets table .firstRow td {
-    border-top: 1px solid #fcb6d6;
-}
-
-.help-tickets table .lastRow td {
-    border-bottom: 1px solid #fcb6d6;
-}
-
-.help-tickets table .firstRow .col1 {
-    border-top-left-radius: 10px;
-}
-
-.help-tickets table .firstRow .col2 {
-    border-top-right-radius: 10px;
-}
-
-.help-tickets table .lastRow .col1 {
-    border-bottom-left-radius: 10px;
-}
-
-.help-tickets table .lastRow .col2 {
-    border-bottom-right-radius: 10px;
-}
-
-
 /*  */
 
 .contact-btn,
@@ -275,4 +225,86 @@ span.highlight2 {
 
 .contact-tickets {
     bottom: 80px;
+}
+
+.popup-help-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-help-header .popup-datetime {
+    font-size: 14px;
+}
+
+/* ============================== */
+
+.help-search {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.help-search table {
+    width: 90%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+    /* space between rows */
+}
+
+.help-search table thead th {
+    background: none;
+    color: #f15a29;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 8px 8px 0 0;
+}
+.help-search table thead tr{
+    background: none;
+}
+
+.help-search table tbody tr {
+    background: #ffffff24;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(112, 169, 239, 0.08);
+}
+
+.help-search table tbody tr td {
+    padding: 14px 10px;
+    color: #333;
+    text-align: center;
+    border-top: 1px solid #e8e8e8;
+}
+
+/* Remove border from first cell in each row */
+.help-search table tbody tr td:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-left: 1px solid #e8e8e8;
+}
+
+/* Remove border from last cell in each row */
+.help-search table tbody tr td:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-right: 1px solid #e8e8e8;
+}
+
+/* Hover Effect */
+.help-search table tbody tr:hover {
+    transform: translateY(-3px);
+    transition: 0.2s ease;
+    box-shadow: 0 4px 12px rgba(86, 160, 239, 0.222);
+}
+
+/* Resolved = green, Not Resolved = orange */
+.help-search table tbody .resolved-yes {
+    color: #1aa81a;
+    font-weight: 600;
+    /* background-color: #9ce29c; */
+}
+
+.help-search table tbody .resolved-no {
+    color: #F15A29;
+    font-weight: 600;
 }

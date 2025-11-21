@@ -46,7 +46,7 @@ var loadAssessment = function (type) {
                 }
                 questionnaire.append(questionElement);
             });
-            var navigation = $("<div class='navigation'><a href='' class='nav-btn leftNav'>⬅️ Go Back</a><a href='' class='nav-btn rightNav greenHover'>💾 Submit</a></div>");
+            var navigation = $("<div class='navigation'><a href='' class='nav-btn leftNav'><i class='bx bx-left-arrow-alt'></i> Go Back</a><a href='' class='nav-btn rightNav greenHover'><i class='bx bx-subdirectory-right'></i> Submit</a></div>");
             var goBack = navigation.find(".leftNav");
             var submit = navigation.find(".rightNav");
             goBack.click(function () {

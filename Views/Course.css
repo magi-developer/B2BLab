@@ -24,7 +24,7 @@
 ========================== */
 .course-details,
 .course-progress {
-    background: #ffffff3b;
+    background: #e6efff;
     padding: 1.5rem;
     border-radius: 16px;
     box-shadow:0 6px 18px rgb(140 189 230 / 66%);
@@ -177,6 +177,8 @@
 }
 .desc{
     color:#555;
+    display: flex;
+    align-items: center;
 }
 
 /* ==========================

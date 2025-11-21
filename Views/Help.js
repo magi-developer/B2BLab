@@ -62,14 +62,27 @@ var loadPage = function (userToken) {
             //         //     p.fadeIn();
             //         // }
             //     });
-                $('.faq-list').append(itemDiv);
+            $('.faq-list').append(itemDiv);
         });
 
         $('.faq-card').click(function () {
-            console.log('click')
-            let item =JSON.parse($(this).attr('data-item'));
+            // console.log('click')
+            $('.help-model').empty();
+            let item = JSON.parse($(this).attr('data-item'));
             console.log(item);
-            
+
+            let data = `
+                <div class="popup-help-header">
+                    <h3 class="popup-title">${item.title}</h3>
+                    <p class="popup-datetime">${item.date}</p>
+                </div>
+                <div>
+                    <p class="popup-helpdesc">${item.details}</p>
+                </div>
+            `;
+            $('.help-model').append(data).fadeIn();
+            $('.overlay').fadeIn();
+
         })
 
         enableSpeech($('.faq-list').find('p'));
@@ -97,78 +110,42 @@ var loadPage = function (userToken) {
 
     $('.contact-tickets').click(function () {
         loadMyTickets(function (response) {
-            // console.log(response)
-            $('.help-tickets').find('.help-search').empty();
+
+            $('.help-search').empty();
             $('.help-support').hide();
             $('.help-tickets').show();
             $('.help-contact').hide();
 
-            var table = $("<table cellspacing='0' cellpadding='10'></table>");
-            response = response.reverse();
-            $.each(response, function (index, item) {
-                let ticketContainer = '';
-                if (index == 0) {
-                    table.append("<tr class='separator'><td></td><td></td></tr>");
-                }
-                var tr = $("<tr class='firstRow'></tr>");
-                tr.append("<td class='col1'>Subject</td>");
-                tr.append("<td class='col2'>" + item.subject + "</td>");
-                table.append(tr);
-
-                tr = $("<tr></tr>");
-                tr.append("<td class='col1'>Details</td>");
-                tr.append("<td class='col2'>" + item.details + "</td>");
-                table.append(tr);
-
-                tr = $("<tr></tr>");
-                tr.append("<td class='col1'>Created On</td>");
-                tr.append("<td class='col2'>" + item.createdOn + "</td>");
-                table.append(tr);
-
-                tr = $("<tr></tr>");
-                tr.append("<td class='col1'>Is Resolved</td>");
-                tr.append("<td class='col2'>" + item.isResolved + "</td>");
-                table.append(tr);
-
-                tr = $("<tr class='lastRow'></tr>");
-                tr.append("<td class='col1'>Resolved By</td>");
-                tr.append("<td class='col2'>" + item.resolvedBy + "</td>");
-                table.append(tr);
-
-                table.append("<tr class='separator'><td></td><td></td></tr>");
-
-                let ticketResolved = item.isResolved.toLowerCase() == 'yes' ? "<p class='ticket-isresolved yes'>It's Resolved By " + item.resolvedBy + "</p>" : "<p class='ticket-isresolved no'>It's Not Resolved</p>";
-                let d = new Date(item.createdOn);
-
-                let day = d.getDate();
-                let year = d.getFullYear();
-
-                // Month short names
-                let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-                let formatted = `${day}-${months[d.getMonth()]}<br>${year}`;
-
-                ticketContainer += `
-                    <div class='parent-container'>
-                        <div>
-                            <div class="ticket-createdon">${formatted}</div>
-                        </div>
-                        <div class='tickets'>
-                            <h3>${item.subject}</h3>
-                            <div class='ticket-body'>
-                                <p>${item.details}</p>
-                                ${ticketResolved}
-                            </div>
-                        </div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                `
-
-                $('.help-tickets').find('.help-search').append(ticketContainer);
+            let html = `
+            <table id="ticketTable" cellspacing='0' cellpadding='10'>
+                <tr>
+                    <th>Subject</th>
+                    <th>Details</th>
+                    <th>Created On</th>
+                    <th>Is Resolved</th>
+                    <th>Resolved By</th>
+                </tr>
+        `;
+        
+        response.reverse().forEach(item => {
+                console.log(item.isResolved)
+                html += `
+                <tr class="ticket_tr">
+                    <td>${item.subject}</td>
+                    <td>${item.details}</td>
+                    <td>${item.createdOn}</td>
+                    <td class="${item.isResolved == 'Yes' ? 'resolved-yes':'resolved-no'}">${item.isResolved}</td>
+                    <td>${item.resolvedBy}</td>
+                </tr>
+            `;
             });
+
+            html += `</table>`;
+
+            $('.help-search').append(html);
         });
     });
+
 
 
     $('.contact-btn-back').click(function () {
