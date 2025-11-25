@@ -12,70 +12,7 @@ var getJobs = function (callback) {
             showLoading("Loading jobs.. Please wait.");
         },
         success: function (response) {
-
-             response = [
-                {
-                    id: 1,
-                    company: "WebDev",
-                    title: "Web Developer",
-                    details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris cursus quis metus quis pellentesque. Integer rutrum congue arcu, eu ultricies nisl dignissim id. Aliquam erat volutpat. Nulla nisi sem, pulvinar sit amet ullamcorper at, tincidunt eget mi. Suspendisse sed molestie ex, sit amet pellentesque odio. Sed nec tellus a leo aliquet rhoncus id a enim. Cras bibendum, augue ac rutrum consequat, metus nisl egestas magna, eget scelerisque sem est nec tortor. Morbi scelerisque nibh risus, in ultricies lectus ornare at. Suspendisse tempor dolor eget cursus imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec ac facilisis eros. Quisque vel ipsum condimentum, ullamcorper eros ac, maximus metus. Duis dignissim nulla a orci ultrices, sit amet mattis magna commodo. Proin placerat, ipsum sed cursus varius, tellus urna tristique nisl, a tristique elit tellus id leo. Nullam euismod tempor orci et placerat.r",
-                    qualification: "B.E",
-                    location: "Bargur, Tamil Nadu",
-                    notice: "3 Month",
-                    package: "3.2 LPA",
-                    isApplied: true,
-                    tags: ["HTML", "CSS", "Java"]
-                },
-                {
-                    id: 2,
-                    company: "TechSpark",
-                    title: "Frontend Developer",
-                    details: "React UI Developer",
-                    qualification: "B.Tech",
-                    location: "Chennai, Tamil Nadu",
-                    notice: "Immediate",
-                    package: "4.0 LPA",
-                    isApplied: false,
-                    tags: ["React", "JavaScript", "Tailwind"]
-                },
-                {
-                    id: 3,
-                    company: "CodeMind",
-                    title: "Backend Developer",
-                    details: "Node.js Backend Engineer",
-                    qualification: "B.E / B.Tech",
-                    location: "Bangalore, Karnataka",
-                    notice: "1 Month",
-                    package: "5.5 LPA",
-                    isApplied: false,
-                    tags: ["Node.js", "Express", "MongoDB"]
-                },
-                {
-                    id: 4,
-                    company: "SoftLogic",
-                    title: "Full Stack Developer",
-                    details: "MERN Stack Developer",
-                    qualification: "Any Degree",
-                    location: "Coimbatore, Tamil Nadu",
-                    notice: "15 Days",
-                    package: "6.0 LPA",
-                    isApplied: true,
-                    tags: ["MongoDB", "React", "Node.js"]
-                },
-                {
-                    id: 5,
-                    company: "BrightApps",
-                    title: "UI/UX Designer",
-                    details: "Figma UI Designer",
-                    qualification: "B.Sc / B.Des",
-                    location: "Salem, Tamil Nadu",
-                    notice: "Immediate",
-                    package: "3.8 LPA",
-                    isApplied: false,
-                    tags: ["Figma", "Photoshop", "Wireframe"]
-                }
-            ];
-
+            console.log(response);
             callback(response.reverse());
         },
         error: function (xhr, status, error) {

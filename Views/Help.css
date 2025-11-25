@@ -150,6 +150,7 @@
 .contact-btn-submit,
 .contact-btn-cancel,
 .contact-tickets,
+.contact-footer-btn,
 .contact-btn-back {
     margin-top: 0.5rem;
     background: #f15a29;
@@ -163,8 +164,9 @@
     transition: background 0.3s;
 }
 
-.contact-btn:hover {
-    background-color: #7c2e14;
+.contact-btn:hover,
+.contact-tickets:hover {
+    background-color: #f48c6a;
 }
 
 .faq-date {
@@ -216,12 +218,12 @@ span.highlight2 {
 
 /*  */
 
-.contact-btn,
+/* .contact-btn,
 .contact-tickets {
     position: fixed;
     bottom: 20px;
     right: 20px;
-}
+} */
 
 .contact-tickets {
     bottom: 80px;
@@ -245,31 +247,41 @@ span.highlight2 {
     margin-top: 15px;
 }
 
-.help-search table {
+.help-ticket table {
     width: 90%;
+    margin: 20px auto;
     border-collapse: separate;
     border-spacing: 0 12px;
     /* space between rows */
 }
 
-.help-search table thead th {
+.help-ticket table thead th {
     background: none;
     color: #f15a29;
     padding: 14px;
     font-size: 15px;
     border-radius: 8px 8px 0 0;
 }
-.help-search table thead tr{
+
+.help-ticket table thead tr {
     background: none;
 }
 
-.help-search table tbody tr {
+.help-ticket table .ticket_tr .details-cell {
+    max-width: 300px;
+    /* background: yellow; */
+    /* white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.help-ticket table tbody tr {
     background: #ffffff24;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(112, 169, 239, 0.08);
 }
 
-.help-search table tbody tr td {
+.help-ticket table tbody tr td {
     padding: 14px 10px;
     color: #333;
     text-align: center;
@@ -277,34 +289,183 @@ span.highlight2 {
 }
 
 /* Remove border from first cell in each row */
-.help-search table tbody tr td:first-child {
+.help-ticket table tbody tr td:first-child {
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
     border-left: 1px solid #e8e8e8;
 }
 
 /* Remove border from last cell in each row */
-.help-search table tbody tr td:last-child {
+.help-ticket table tbody tr td:last-child {
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-right: 1px solid #e8e8e8;
 }
 
 /* Hover Effect */
-.help-search table tbody tr:hover {
+.help-ticket table tbody tr:hover {
     transform: translateY(-3px);
     transition: 0.2s ease;
     box-shadow: 0 4px 12px rgba(86, 160, 239, 0.222);
 }
 
 /* Resolved = green, Not Resolved = orange */
-.help-search table tbody .resolved-yes {
+.help-ticket table tbody .resolved-yes {
     color: #1aa81a;
     font-weight: 600;
     /* background-color: #9ce29c; */
 }
 
-.help-search table tbody .resolved-no {
+.help-ticket table tbody .resolved-no {
     color: #F15A29;
     font-weight: 600;
+}
+
+.suport-footer-cont {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.suport-footer-cont .support-footer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.9s ease;
+}
+
+.suport-footer-cont .support-footer.active {
+    max-height: 400px;
+    /* set a safe maximum height */
+}
+
+.contact-footer-btn {
+    background: none;
+    animation: help 2.5s ease-in-out infinite;
+    display: inline-block;
+}
+
+/* Smooth floating effect */
+@keyframes help {
+    0% {
+        transform: translateY(-6px);
+    }
+
+    50% {
+        transform: translateY(6px);
+    }
+
+    100% {
+        transform: translateY(-6px);
+    }
+}
+
+/* .model{
+    position: relative;
+} */
+.popclsbtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    z-index: 10000;
+    cursor: pointer;
+}
+
+.popup-help-description {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* .contact-btn,
+.contact-tickets{
+    position: absolute;
+    top: -50px;
+
+} */
+
+/* DATATABLE */
+
+/* .table-search-container {
+    text-align: center;       
+    margin-bottom: 15px;
+} */
+
+/* .custom-search-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.custom-search-box i {
+    font-size: 20px;
+    color: #555;
+}
+
+.custom-search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+} */
+
+/* Pagination container */
+.dataTables_paginate {
+    display: flex !important;
+    justify-content: end !important;
+    margin-top: 15px !important;
+    align-items: center !important;
+    gap: 6px;
+}
+.dataTables_paginate>span{
+    display: flex;
+    gap: 5px;
+}
+
+/* Default pagination buttons */
+.dataTables_paginate a {
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid #f15a29;
+    color: #f15a29 !important;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none !important;
+}
+
+/* Hover effect */
+.dataTables_paginate a:hover {
+    background: #f15a29;
+    color: #fff !important;
+}
+
+/* Active (current) page */
+.dataTables_paginate .current {
+    background: #f15a29 !important;
+    color: #fff !important;
+    border: 1px solid #f15a29;
+}
+
+/* Disabled buttons (Previous/Next when blocked) */
+.dataTables_paginate .disabled {
+    background: #eee !important;
+    border-color: #ccc !important;
+    color: #999 !important;
+    cursor: default !important;
+}
+
+/* Remove focus outline */
+.dataTables_paginate a:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }

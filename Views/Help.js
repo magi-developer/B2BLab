@@ -47,8 +47,17 @@ var loadPage = function (userToken) {
             // console.log(item)
             // console.log('------------------')
 
-            var itemDiv = $("<div class='faq-card' data-item='" + helpDetails + "'><div class='help-icon'><ion-icon name='document-text-outline'></ion-icon></div><div class='faq-date'><h3>" + item.title +
-                "</h3><span>" + item.date + "</span></div>");
+            var itemDiv = $(`
+    <div class='faq-card'>
+        <div class='help-icon'><ion-icon name='document-text-outline'></ion-icon></div>
+        <div class='faq-date'>
+            <h3>${item.title}</h3>
+            <span>${item.date}</span>
+        </div>
+    </div>
+`);
+
+            itemDiv.data("item", item);
 
             //     itemDiv.find('.faq-date').click(function () {
             //         // var p = $(itemDiv).find('p');
@@ -66,24 +75,27 @@ var loadPage = function (userToken) {
         });
 
         $('.faq-card').click(function () {
-            // console.log('click')
+
             $('.help-model').empty();
-            let item = JSON.parse($(this).attr('data-item'));
+
+            // GET full object SAFELY (no JSON.parse needed!)
+            let item = $(this).data('item');
             console.log(item);
 
             let data = `
-                <div class="popup-help-header">
-                    <h3 class="popup-title">${item.title}</h3>
-                    <p class="popup-datetime">${item.date}</p>
-                </div>
-                <div>
-                    <p class="popup-helpdesc">${item.details}</p>
-                </div>
-            `;
+                        <div class="popclsbtn"><i class='bx bx-x'></i></div>
+                        <div class="popup-help-header">
+                            <h3 class="popup-title">${item.title}</h3>
+                            <p class="popup-datetime">${item.date}</p>
+                        </div>
+                        <div class="popup-help-description">
+                            <p class="popup-helpdesc">${item.details}</p>
+                        </div>
+                    `;
+
             $('.help-model').append(data).fadeIn();
             $('.overlay').fadeIn();
-
-        })
+        });
 
         enableSpeech($('.faq-list').find('p'));
     });
@@ -98,7 +110,7 @@ var loadPage = function (userToken) {
     //     $('.model, .overlay').fadeOut();
     // })
 
-    $(document).on('click', '.overlay, .contact-btn-cancel', function () {
+    $(document).on('click', '.popclsbtn, .contact-btn-cancel', function () {
         $('.model, .overlay').fadeOut();
     })
 
@@ -111,13 +123,14 @@ var loadPage = function (userToken) {
     $('.contact-tickets').click(function () {
         loadMyTickets(function (response) {
 
-            $('.help-search').empty();
+            $('.help-ticket').empty();
             $('.help-support').hide();
             $('.help-tickets').show();
             $('.help-contact').hide();
 
             let html = `
-            <table id="ticketTable" cellspacing='0' cellpadding='10'>
+        <table id="ticketTable" class="display" cellspacing='0' cellpadding='10'>
+            <thead>
                 <tr>
                     <th>Subject</th>
                     <th>Details</th>
@@ -125,27 +138,88 @@ var loadPage = function (userToken) {
                     <th>Is Resolved</th>
                     <th>Resolved By</th>
                 </tr>
-        `;
-        
-        response.reverse().forEach(item => {
-                console.log(item.isResolved)
+            </thead>
+            <tbody>
+    `;
+
+            response.reverse().forEach(item => {
+                let fullText = item.details;
+                let shortText = fullText.length > 30
+                    ? fullText.substring(0, 30) + "..."
+                    : fullText;
+
                 html += `
-                <tr class="ticket_tr">
-                    <td>${item.subject}</td>
-                    <td>${item.details}</td>
-                    <td>${item.createdOn}</td>
-                    <td class="${item.isResolved == 'Yes' ? 'resolved-yes':'resolved-no'}">${item.isResolved}</td>
-                    <td>${item.resolvedBy}</td>
-                </tr>
-            `;
+            <tr class="ticket_tr">
+                <td>${item.subject}</td>
+                <td class="details-cell" data-full="${fullText}" data-short="${shortText}">
+                    ${shortText}
+                </td>
+                <td>${item.createdOn}</td>
+                <td class="${item.isResolved == 'Yes' ? 'resolved-yes' : 'resolved-no'}">${item.isResolved}</td>
+                <td>${item.resolvedBy}</td>
+            </tr>
+        `;
             });
 
-            html += `</table>`;
+            html += `</tbody></table>`;
 
-            $('.help-search').append(html);
+            $('.help-ticket').append(html);
+
+            // ⭐ Apply DataTable AFTER table is added to DOM
+            $('#ticketTable').DataTable({
+                pageLength: 10,
+                lengthMenu: [5, 10, 20, 50],
+                columnDefs: [
+                    { orderable: false, targets: 1 }  // Disable sorting on Details column (optional)
+                ],
+                lengthChange: false,   // hides "Show X entries"
+                info: false,
+                dom: '<"table-search-container"f>t<"bottom"p>',
+                order: [[3, "desc"]],
+            });
+
+            $(".table-search-container label").html(`
+    <div class="custom-search-box content_searcher">
+        <i class='bx bx-search'></i>
+        <input type="search" class="custom-search-input" placeholder="Search...">
+    </div>
+`);
+            $(".custom-search-input").on("keyup", function () {
+                $('#ticketTable').DataTable().search(this.value).draw();
+            });
+
+            // Expand/Collapse full text
+            $(document).on('click', '.details-cell', function () {
+                let full = $(this).data('full');
+                let short = $(this).data('short');
+
+                if ($(this).hasClass('open')) {
+                    $(this).removeClass('open').text(short);
+                } else {
+                    $(this).addClass('open').text(full);
+                }
+            });
+
+        });
+    });
+    $('#searchInput').on('keyup', function () {
+        let filter = $(this).val().toLowerCase();
+
+        $('#ticketTable tbody .ticket_tr').each(function () {
+            let text = $(this).text().toLowerCase();
+            $(this).toggle(text.includes(filter));
         });
     });
 
+    $('.contact-footer-btn').click(function () {
+        $('.support-footer').addClass('active');
+    });
+    $(document).click(function (e) {
+        // Check if click is outside BOTH .support-footer and .contact-footer-btn
+        if (!$(e.target).closest('.support-footer, .contact-footer-btn').length) {
+            $('.support-footer').removeClass('active');
+        }
+    });
 
 
     $('.contact-btn-back').click(function () {
@@ -179,6 +253,7 @@ var loadPage = function (userToken) {
                         $('.help-support').show();
                         $('.help-contact').hide();
                         $('.help-tickets').hide();
+                        $('.overlay').fadeOut();
                     });
                 },
                 error: function (xhr, status, error) {
@@ -207,29 +282,29 @@ var loadPage = function (userToken) {
                 showLoading("Loading your tickets.. Please wait.");
             },
             success: function (response) {
-                response = [
-                    {
-                        "createdOn": "October 17, 2025",
-                        "details": "test",
-                        "isResolved": "No",
-                        "resolvedBy": "",
-                        "subject": "test"
-                    },
-                    {
-                        "createdOn": "October 20, 2025",
-                        "details": "issue with PCB layout",
-                        "isResolved": "No",
-                        "resolvedBy": "",
-                        "subject": "PCB Design Issue"
-                    },
-                    {
-                        "createdOn": "October 22, 2025",
-                        "details": "resource upload check",
-                        "isResolved": "Yes",
-                        "resolvedBy": "Admin",
-                        "subject": "Upload Verification"
-                    }
-                ]
+                // response = [
+                //     {
+                //         "createdOn": "October 17, 2025",
+                //         "details": "test",
+                //         "isResolved": "No",
+                //         "resolvedBy": "",
+                //         "subject": "test"
+                //     },
+                //     {
+                //         "createdOn": "October 20, 2025",
+                //         "details": "issue with PCB layout",
+                //         "isResolved": "No",
+                //         "resolvedBy": "",
+                //         "subject": "PCB Design Issue"
+                //     },
+                //     {
+                //         "createdOn": "October 22, 2025",
+                //         "details": "resource upload check",
+                //         "isResolved": "Yes",
+                //         "resolvedBy": "Admin",
+                //         "subject": "Upload Verification"
+                //     }
+                // ]
                 callback(response);
                 // console.log(response)
             },

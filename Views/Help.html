@@ -13,7 +13,8 @@
     <script src="Help.js"></script>
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <!-- <link rel="stylesheet" type="text/css" 
+      href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"/> -->
 </head>
 
 <body>
@@ -30,9 +31,10 @@
                         </ul>
                     </div>
                 </div>
-                <div class="icon-btn" style="border-bottom:3px solid #fff; padding-bottom: 5px;" title="Help"
+                <div class="icon-btn" title="Help"
                     onclick="location.href='Help.html'">❓</div>
                 <div class="icon-btn" title="Account Settings" onclick="location.href='Settings.html'">⚙️</div>
+                <div class="icon-btn" title="Menu" onclick="toggleMenu(function (isVisible) {});">🛠️</div>
             </div>
         </header>
 
@@ -56,15 +58,18 @@
                 <section class="help-support">
                     <h2 class="section-title">Help & Support</h2>
                     <div class="helpAndSupportHead">
-                        <div class="support-footer">
-                            <!-- <p>Still need help?</p>     -->
-                            <button class="contact-btn">Contact Support</button>
-                            <button class="contact-tickets">My Tickets</button>
+                        <div class="suport-footer-cont">
+                            <div class="support-footer">
+                                <!-- <p>Still need help?</p>     -->
+                                <button class="contact-btn">Contact Support</button> <br>
+                                <button class="contact-tickets">My Tickets</button>
+                            </div>
+                            <button class="contact-footer-btn"><img src="../Icons/help.png" alt="" width="70px"></button>
                         </div>
 
                         <div class="help-search">
                             <p></p>
-                            <div class="help-search-input-container">
+                            <div class="help-search-input-container content_searcher">
                                 <ion-icon name="search-outline"></ion-icon>
                                 <input type="text" placeholder="Search help articles" id="text-search" />
                             </div>
@@ -75,17 +80,20 @@
                     <div class="faq-list">
 
                     </div>
-
-
                 </section>
 
 
 
                 <section class="help-support help-tickets">
                     <!-- <h2 class="section-title">My Tickets</h2> -->
-                    <input type="text" id="searchInput" placeholder="Search tickets..." style="margin-bottom:10px; padding:5px; width:250px;">
-                    <div class="help-search">
-                        
+                    <!-- <div class="course-search-box content_searcher">
+                        <ion-icon name="search-outline"></ion-icon>
+                        <input type="text" id="searchInput" placeholder="Search...">
+                    </div> -->
+                    <!-- <input type="text" id="searchInput" placeholder="Search..."
+                        style="margin-bottom:10px; padding:5px; width:250px;"> -->
+                    <div class=" help-ticket">
+
                     </div>
                     <div class="support-footer">
                         <button class="contact-btn-back">Back to Help</button>
@@ -112,13 +120,14 @@
         </section>
     </div>
     <div class="help-model model" style="display: none;">
-
+       
     </div>
     <!-- <div class="overlay"></div> -->
     <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
     <script src="Layout.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

@@ -41,6 +41,7 @@ var login = function (username, password) {
         },
         error: function (xhr, status, error) {
             var e = eval("(" + xhr.responseText + ")");
+            console.log(e)
             if (e == undefined) {
                 e = "Unable to login, the server is not reachable.";
                 showError(e);

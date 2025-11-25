@@ -1518,6 +1518,13 @@ ease; */
 
 
 /* JOB CARD */
+.dashboard-jobportal-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: scroll;
+    padding: 20px 0;
+}
 
 .dashboard-jobportal-container .job-card {
     width: 98%;
@@ -1590,4 +1597,61 @@ ease; */
     justify-content: center;
     color: #fae6e6;
     border-radius: 50%;
+}
+
+/* USER LEVELUP */
+.levelinfocontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.levelinfoimg {
+    width: 50%;
+    position: relative;
+}
+
+.levelinfoimg>img {
+    position: absolute;
+    left: -70px;
+    bottom: -150px;
+    /* width: 250px; */
+    height: 450px;
+}
+
+.leavelinfocontent {
+    width: 50%;
+}
+.leavelinfocontent h3{
+    margin: 5px auto;
+    width: fit-content;
+}
+
+.leaveuppopup {
+    overflow: visible;
+    width: 650px;
+    height: 300px;
+}
+
+.levelinfocontent>div{
+    display: flex;
+    align-items: center;
+   justify-content: space-between;
+    padding: 0px 10px;
+    width: 90%;
+    border-radius: 10px;
+    background: #00A6FF;
+    margin: 10px auto;
+    color: #fff;
+}
+
+@media(max-width:480px){
+    .levelinfoimg{
+        display: none;
+
+    }
+    .leavelinfocontent{
+        width: 100%;
+    }
 }

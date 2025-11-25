@@ -195,13 +195,31 @@ var loadDashboard = function () {
 
                     // Button actions
                     $('.btnLevelInfo').click(function () {
-                        var msg = "<div style='display:flex;justify-content: space-around;'><div style='padding: 25px;'><span style='color:gold;font-size:2rem;'>★</span><span style='color:#d63384;font-size:2rem;'>★★</span><br/>" + getUserLevel(1) + "</div>";
-                        msg += "<div style='padding: 25px;'><span style='color:gold;font-size:2rem;'>★★</span><span style='color:#d63384;font-size:2rem;'>★</span><br/>" + getUserLevel(2) + "</div>";
-                        msg += "<div style='padding: 25px;'><span style='color:gold;font-size:2rem;'>★★★</span><br/>" + getUserLevel(3) + "</div></div>";
-                        showOkayAlert("User Levels", msg, function (button, dialog) {
-                            dialog.remove();
-                        });
+                        $('.leaveuppopup').empty();
+                        var msg = "<div class='levelinfocontent'><div ><span><span style='color:gold;font-size:2rem;'>★</span><span style='color:#fff;font-size:2rem;'>★★</span></span><span>" + getUserLevel(1) + "</span></div>";
+                        msg += "<div><span><span style='color:gold;font-size:2rem;'>★★</span><span style='color:#fff;font-size:2rem;'>★</span></span><span>" + getUserLevel(2) + "</span></div>";
+                        msg += "<div><span><span style='color:gold;font-size:2rem;'>★★★</span></span><span>" + getUserLevel(3) + "</span></div></div>";
+                        // showOkayAlert("User Levels", msg, function (button, dialog) {
+                        //     dialog.remove();
+                        // });
+
+                        let infoCard = `
+                            <div class="levelinfocontainer">
+                                <div class="levelinfoimg">
+                                    <img src="../Icons/userleavelUp.png" alt="" />
+                                </div>
+                                <div class="leavelinfocontent">
+                                    <h3>User Levels</h3>
+                                    ${msg}
+                                </div>
+                            </div>
+                       `;
+                        $('.leaveuppopup').append(infoCard).fadeIn();
+                        $('.overlay').fadeIn();
                     });
+                    $(document).on('click', '.overlay', function () {
+                        $('.model, .overlay').fadeOut();
+                    })
 
                     $('.btnExploreCourses').click(function () {
                         var strWindowFeatures = "location=yes,height=" + window.innerHeight + ",width=" + window.innerWidth + ",scrollbars=yes,status=yes";

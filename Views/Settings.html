@@ -30,6 +30,7 @@
                 </div>
                 <div class="icon-btn" title="Help" onclick="location.href='Help.html'">❓</div>
                 <div class="icon-btn" title="Account Settings" onclick="location.href='Settings.html'">⚙️</div>
+                <div class="icon-btn" title="Menu" onclick="toggleMenu(function (isVisible) {});">🛠️</div>
             </div>
         </header>
 
@@ -114,23 +115,23 @@
                                 <h2>Basic Details</h2>
                                 <div class="form-group namegroup">
                                     <div class="form-group">
-                                        <label for="username">Username</label>
+                                        <label for="username">Username<span class="impfeild">*</span></label>
                                         <input type="text" id="userName" placeholder="Username" readonly />
                                     </div>
                                     <div class="form-group">
-                                        <label for="firstName">First Name</label>
+                                        <label for="firstName">First Name<span class="impfeild">*</span></label>
                                         <input type="text" id="firstName" placeholder="First Name" readonly />
                                     </div>
                                     <div class="form-group">
-                                        <label for="middleName">Middle Name</label>
+                                        <label for="middleName">Middle Name<span class="impfeild">*</span></label>
                                         <input type="text" id="middleName" placeholder="Middle Name" readonly />
                                     </div>
                                     <div class="form-group">
-                                        <label for="lastName">Last Name</label>
+                                        <label for="lastName">Last Name<span class="impfeild">*</span></label>
                                         <input type="text" id="lastName" placeholder="Last Name" readonly />
                                     </div>
                                     <div class="form-group form-group-no-bottom-margin">
-                                        <label for="email">Email Address</label>
+                                        <label for="email">Email Address<span class="impfeild">*</span></label>
                                         <input type="email" id="email" placeholder="your@email.com" readonly />
                                         <div class="form-group optionsGroup">
                                             <label for="emailVerified" id="emailVerifiedLabel">
@@ -141,13 +142,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="dob">DOB</label>
+                                        <label for="dob">DOB<span class="impfeild">*</span></label>
                                         <input type="date" id="dob" placeholder="Date of Birth" readonly />
                                     </div>
                                     <div class="form-group">
-                                        <label for="mobileNumber">Mobile Number</label>
+                                        <label for="mobileNumber">Mobile Number<span class="impfeild">*</span></label>
                                         <input type="tel" id="mobileNumber" class="canBeChanged"
-                                            placeholder="Mobile Number" />
+                                            placeholder="Mobile Number" required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="telephoneNumber">Telephone Number</label>
@@ -158,10 +159,10 @@
 
 
                                 <div class="form-group optionsGroup">
-                                    <label for="gender">Gender</label>
+                                    <label for="gender">Gender<span class="impfeild">*</span></label>
                                     <div class="radio-group">
                                         <label class="radio-option">
-                                            <input type="radio" name="gender" value="isMale" id="isMale" disabled />
+                                            <input type="radio" name="gender" value="isMale" id="isMale" disabled required/>
                                             Male
                                         </label>
                                         <label class="radio-option">
@@ -172,29 +173,29 @@
                                 </div>
 
                                 <div class="form-group optionsGroup">
-                                    <label for="profession">Profession</label>
+                                    <label for="profession">Profession<span class="impfeild">*</span></label>
                                     <div class="radio-group">
                                         <label class="radio-option">
                                             <input type="radio" name="profession" value="isStudent" id="isStudent"
-                                                >
+                                                required/>
                                             Student
                                         </label>
                                         <label class="radio-option">
                                             <input type="radio" name="profession" value="isWorking" id="isWorking"
-                                                >
+                                                />
                                             Working
                                         </label>
                                         <label class="radio-option">
                                             <input type="radio" name="profession" value="isJobSeeker" id="isJobSeeker"
-                                                >
+                                                />
                                             Job Seeker
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="schoolOrCompany">School Or Company Name</label>
+                                    <label for="schoolOrCompany">School Or Company Name<span class="impfeild">*</span></label>
                                     <input type="text" id="schoolOrCompany" class="canBeChanged" placeholder="School Or Company Name"
-                                         />
+                                         required/>
                                 </div>
                             </div>
 
@@ -204,7 +205,7 @@
                                 <h2>Address Details</h2>
                                 <div>
                                     <div class="form-group">
-                                        <label for="addressLine1">Address Line 1</label>
+                                        <label for="addressLine1">Address Line 1<span class="impfeild">*</span></label>
                                         <input type="text" id="addressLine1" class="canBeChanged"
                                             placeholder="Address Line 1" required/>
                                     </div>
@@ -224,21 +225,21 @@
                                             placeholder="Nearest Landmark" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="zipCode">Postal Code</label>
+                                        <label for="zipCode">Postal Code<span class="impfeild">*</span></label>
                                         <input type="number" id="zipCode" class="canBeChanged" placeholder="Postal Code"
                                              required/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="city">City</label>
+                                        <label for="city">City<span class="impfeild">*</span></label>
                                         <input type="text" id="city" class="canBeChanged" placeholder="City" required/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="state">State</label>
+                                        <label for="state">State<span class="impfeild">*</span></label>
                                         <input type="text" id="state" class="canBeChanged" placeholder="State"
                                              required/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="country">Country</label>
+                                        <label for="country">Country<span class="impfeild">*</span></label>
                                         <input type="text" id="country" class="canBeChanged" placeholder="Country"
                                              required/>
                                     </div>

@@ -22,18 +22,16 @@ h2 {
 }
 
 .topic {
-    border: 1px solid #f6a585;
+    /* border: 1px solid #f6a585; */
     display: flex;
     flex-direction: column;
-    background: linear-gradient(45deg, #efc4e3, #e9beae);
+    background: #ffffff3b;
     align-items: end;
-    /* box-shadow: 0 0 10px ; */
+    /* box-shadow: 0 0 10px; */
     border-radius: 8px;
     margin-bottom: 1rem;
     overflow: hidden;
-    /* opacity: 0;
-    transform: scale(0.5);
-    transition: all .5s ease-in-out; */
+    box-shadow: 0 0 15px #98b0ff5e;
 }
 
 /* .topic.show{
@@ -50,7 +48,7 @@ h2 {
     font-weight: bold;
     color: #000;
     align-items: center;
-    border-bottom: 1px solid #fff;
+    /* border-bottom: 1px solid #fff; */
 }
 
 .topic-meta {
@@ -81,12 +79,13 @@ h2 {
 .comment {
     /* border-bottom: 1px solid #fff; */
     padding: 0.5rem 0;
-    background: #FFFFFF;
+    background: #f3f1f19c;
     /* border: 1px solid #faa78c; */
     /* box-shadow: 0 0 5px #ffffff76; */
     padding: 10px 15px;
     border-radius: 10px;
     margin: 10px 0;
+    color: #555;
 }
 
 .comment:last-child {
@@ -160,6 +159,9 @@ button {
     color: white;
     border-color: #F15A29;
 }
+.topic-full-description{
+    color: #555;
+}
 
 
 /*search bar*/
@@ -172,16 +174,16 @@ button {
 }
 
 .forum-search-box-container {
-    width: 100%;
+    width: 70%;
 
     /* background: red; */
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: relative; */
 }
 
-.forum-search-input {
+/* .forum-search-input {
     padding: 10px 14px;
     border: 2px solid #F15A29;
     border-radius: 20px 0 0 20px;
@@ -192,12 +194,12 @@ button {
     transition: all 0.3s ease;
     z-index: 2;
     padding: 10px 20px 10px 15px;
-}
+} */
 
-.forum-search-input:focus {
+/* .forum-search-input:focus {
     border-color: #F15A29;
     box-shadow: 0 0 5px rgba(214, 51, 132, 0.3);
-}
+} */
 
 .forum-search-btn {
     /* position: absolute;
@@ -235,9 +237,7 @@ button {
 }
 
 .topicName {
-    background: linear-gradient(90deg, #FF561F, #F71A4D);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+   color: #F15A29;
     font-size: 1.1rem;
     text-transform: capitalize;
 }
@@ -269,6 +269,7 @@ button {
     width: 100%;
     height: auto;
     border-radius: 10px;
+    box-shadow: 0 0 15px #7d97ff4d;
 }
 
 .topic-body .commentImage {
@@ -298,34 +299,84 @@ button {
     border: 1px solid #F15A29;
 }
 
-.forumPopUpGenerater{
+.forumPopUpGenerater {
     position: fixed;
     right: 40px;
     bottom: 40px;
-    border-radius: 50%;
+    border-radius:  50%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 15px;
-    background: linear-gradient(60deg, #ef4100, #ef00ae);
+    background:#f15a29;
     color: #fff;
     cursor: pointer;
 }
 
-.forumPopUpGenerater ion-icon{
+.forumPopUpGenerater ion-icon {
     font-size: 25px;
 }
 
-.new-topic-form{
+/* .new-topic-form {
     width: fit-content;
     padding: 40px;
     position: fixed;
     left: 50%;
     gap: 20px;
     transform: translateX(-50%) translateY(-50%);
-    top: 50%;
-    /* transform: translateY(-50%); */
-    z-index: 1001;
+    top: 50%; */
+/* transform: translateY(-50%); */
+/* z-index: 1001;
     background: #fff;
     border-radius: 10px;
+} */
+
+
+/* -------------------------------------------------- */
+.topic{
+    transition: all .5s ease;
+}
+.topic:hover{
+    transform: translateY(-5px);
+}
+.topic-card {
+    padding: 15px;
+    background: #fff;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+.topic-card:hover {
+    background: #fef4f1;
+}
+
+.topic-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #F15A29;
+}
+
+.topic-meta {
+    color: #888;
+    font-size: 13px;
+}
+
+.topic-detail-container {
+    padding: 20px;
+    background: #fff;
+    opacity: 1;
+    border-radius: 10px;
+}
+
+#backBtn {
+    background: #F15A29;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    cursor: pointer;
 }

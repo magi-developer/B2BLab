@@ -1,4 +1,6 @@
-﻿
+﻿var allNotifications = []; // to store all notifications globally
+var currentFilterType = "all"; // 'all' | 'read' | 'unread'
+
 function init(server) {
     lmsServer = server;
     getToken(loadPage);
@@ -75,7 +77,7 @@ var allNotifications = []; // to store all notifications globally
 
 var updateUI = function (notifications) {
     allNotifications = notifications; // store full data for filtering
-    renderNotifications("all"); // initially show all
+    renderNotifications(currentFilterType); // keep current filter
 };
 
 function renderNotifications(filterType) {
@@ -92,8 +94,8 @@ function renderNotifications(filterType) {
 
     $.each(filtered, function (index, notification) {
         var element = $("<div class='notification-card'></div>");
-        var notifyContent = $("<div class='notification-content'><p class='notification-text'>" + notification.details + "</p></div>")
-        var notificationMeta = $("<div class='notification-meta'><p>" + notification.from + "</p> <p> " + notification.date + "</p></div>")
+        var notifyContent = $("<div class='notification-content'><p class='notification-text'>" + notification.details + "</p></div>");
+        var notificationMeta = $("<div class='notification-meta'><p>" + notification.from + "</p> <p> " + notification.date + "</p></div>");
 
         var button, indicator;
         if (notification.isRead) {
@@ -116,13 +118,14 @@ function renderNotifications(filterType) {
     });
 }
 
+
 // Filter Button Logic
 $(document).on('click', '.filter-btn', function () {
     $('.filter-btn').removeClass('active');
     $(this).addClass('active');
 
-    const filterType = $(this).data('filter');
-    renderNotifications(filterType);
+    currentFilterType = $(this).data('filter'); // save current
+    renderNotifications(currentFilterType);
 });
 
 var fetchNotifications = function () {

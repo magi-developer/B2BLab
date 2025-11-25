@@ -2,6 +2,7 @@
 var currentSize = 10;
 var filtered = false;
 var topicId = null;
+var currentOpenTopic = null;
 
 function init(server) {
     lmsServer = server;
@@ -13,18 +14,37 @@ var loadPage = function (userToken) {
     getData("notifications", loadNotifications);
     getTopics(loadForum);
 
-    $('.forum-search-btn').click(function () {
-        var search = $('.forum-search-input').val();
-        if (search == "" && !filtered) {
-            $('.forum-search-btn').prop('disabled', true);
-            highlightElement($('.forum-search-input'), function () {
-                $('.forum-search-btn').prop('disabled', false);
-            })
+    let typingTimer;
+    let typingDelay = 300; // ms
+
+    $('#forumSearch').on('keyup', function (e) {
+
+        clearTimeout(typingTimer);
+
+        var search = $(this).val().trim();
+
+        // ENTER key
+        if (e.key === "Enter") {
+            triggerSearch(search);
             return;
         }
+
+        // Typing auto search
+        typingTimer = setTimeout(function () {
+            triggerSearch(search);
+        }, typingDelay);
+    });
+
+    function triggerSearch(search) {
+
+        if (search === "" && !filtered) {
+            highlightElement($('#forumSearch'));
+            return;
+        }
+
         currentOffset = 0;
         getTopics(loadForum);
-    });
+    }
 
     $('.pagerPrev').click(function () {
         goToPreviousPage(loadForum);
@@ -104,11 +124,11 @@ var loadPage = function (userToken) {
         });
     });
 
-    $(document).on('click', '.forumPopUpGenerater', function(){
+    $(document).on('click', '.forumPopUpGenerater', function () {
         $('.new-topic-form, .overlay').fadeIn();
         console.log('popup clicked');
     })
-    $(document).on('click', '.overlay', function(){
+    $(document).on('click', '.overlay', function () {
         $('.model, .overlay').fadeOut();
         console.log('popup closed');
     })
@@ -130,6 +150,7 @@ var goToPreviousPage = function (callback) {
     currentOffset = currentOffset - currentSize;
     getTopics(callback);
 }
+
 
 var getTopics = function (callback) {
     topicId = getURLParam("id");
@@ -160,6 +181,7 @@ var loadTopics = function (offset, search, id, callback) {
             showLoading("Loading topics.. Please wait.");
         },
         success: function (response) {
+            // response.topics = response.topics.reverse();
             callback(response);
             console.log(response);
         },
@@ -182,7 +204,7 @@ var loadTopics = function (offset, search, id, callback) {
 
 var loadForum = function (topicResponse) {
     var topicReversed = topicResponse.topics.reverse();
-    $.each(topicReversed, function (index, topic) {
+    $.each(topicResponse.topics.reverse(), function (index, topic) {
         var div = addTopic(topic);
         $('#topics-container').append(div);
     });
@@ -200,10 +222,22 @@ var loadForum = function (topicResponse) {
         topicId = null;
         $('.forum-search-back').show();
     }
+
+    // document.getElementById("forumSearch").addEventListener("keyup", function () {
+    //     let filter = this.value.toLowerCase();
+    //     let cards = document.querySelectorAll(".topic-header");
+
+    //     cards.forEach(card => {
+    //         let text = card.innerText.toLowerCase();
+    //         card.style.display = text.includes(filter) ? "grid" : "none";
+    //     });
+    // });
+
 }
 
 var addComment = function (comment) {
-    var commentDiv = $("<div class='comment'><div class='commentHeader'><div class='comment-meta'>@" + comment.user + " · " + comment.date + "</div></div><div>" + comment.comment + "</div></div>");
+    var commentDiv = $("<div class='comment'><div class='commentHeader'><div class='comment-meta'><strong>@" + comment.user + "</strong> · " + comment.date + "</div></div><div>" + comment.comment + "</div></div>");
+
     if (comment.isAllowedToDelete) {
         deleteBtn = $("<div class='deleteComment'>❌</div>");
         deleteBtn.click(function () {
@@ -214,50 +248,249 @@ var addComment = function (comment) {
             $.ajax({
                 url: lmsServer + "/Content/DeleteComment?commentId=" + comment.id + "&token=" + encodeURIComponent(token),
                 type: "GET",
-                beforeSend: function () {
-
-                },
                 success: function (response) {
+
                     commentDiv.remove();
+
+                    // ⭐ FIX: Update topic comments list in memory
+                    if (currentOpenTopic) {
+                        currentOpenTopic.comments =
+                            currentOpenTopic.comments.filter(c => c.id !== comment.id);
+                    }
                 },
                 error: function (xhr, status, error) {
                     var e = eval("(" + xhr.responseText + ")");
                     if (e == undefined) {
-                        e = "Unable to delete the comment, the server is not reachable.";
-                        showError(e);
+                        showError("Unable to delete the comment, the server is not reachable.");
                     } else {
                         showError("Error: " + e.title + ". Click <a class='tryAgainLink' href='Login.html'> here </a> to go to login.");
                     }
-                },
-                dataType: "JSON",
-                contentType: "application/json; charset=utf-8",
-                complete: function (response) {
-
                 }
             });
+
         });
         commentDiv.find('.commentHeader').append(deleteBtn);
     }
+
     return commentDiv;
 }
 
+// var addTopic = function (topic) {
+//     // let item = JSON.stringify(topic);
+//     var topicDiv = $("<div class='topic' ><div class='topic-header'><div class='topicTitle'><span class='topicName'>" + topic.topicName + "</span><span class='topic-meta'>By " + topic.user + "  " + topic.date + "</span></div></div></div>"); //<div class='topicDescription'>" + topic.description + "</div>
+//         topicDiv.data('item', topic)
+//     var topicBody = $("<div class='topic-body'></div>");
+//     $.each(topic.comments, function (index, comment) {
+//         var div = addComment(comment);
+//         topicBody.append(div);
+//     });
+
+
+
+//     var newComment = $("<form class='comment-form'><textarea placeholder='Add a comment' required='' class='newComment' maxlength='1000'></textarea><div class='commentActions'><button class='addNewComment' type='submit'>Comment</button><button class='insertImage' type='button'>Insert Image</button><button class='previewComment' type='button'>Preview</button></div></form>");
+
+//     newComment.submit(function (e) {
+//         var comment = $(this).find('.newComment').val();
+
+//         if (comment.trim() == "") {
+//             e.preventDefault();
+//             showOkayAlert("Error", "Empty comment", function (b, e) {
+//                 e.remove();
+//             });
+//             return false;
+//         }
+
+//         $.ajax({
+//             url: lmsServer + "/Content/AddComment?topicId=" + topic.id + "&comment=" + encodeURIComponent(comment) + "&token=" + encodeURIComponent(token),
+//             type: "GET",
+//             beforeSend: function () {
+//                 newComment.find('.addNewComment').prop('disabled', true).html("Submitting..");
+//             },
+//             success: function (response) {
+//                 newComment.find('.addNewComment').prop('disabled', false).html("Comment");
+//                 var commentDiv = addComment(response);
+//                 newComment.before(commentDiv);
+//                 newComment.find('.newComment').val("");
+//             },
+//             error: function (xhr, status, error) {
+//                 var e = eval("(" + xhr.responseText + ")");
+//                 if (e == undefined) {
+//                     e = "Unable to add the topic, the server is not reachable.";
+//                     showError(e);
+//                 } else {
+//                     showError("Error: " + e.title + ". Click <a class='tryAgainLink' href='Login.html'> here </a> to go to login.");
+//                 }
+//             },
+//             dataType: "JSON",
+//             contentType: "application/json; charset=utf-8",
+//             complete: function (response) {
+
+//             }
+//         });
+//         return false;
+//     });
+
+//     newComment.find('.insertImage').click(function () {
+//         var textArea = newComment.find('.newComment');
+//         if (textArea.val().length > 850) {
+//             showOkayAlert("Error", "Cannot insert image, max charecters per comment is 1000", function (b, e) {
+//                 e.remove();
+//             });
+//         } else {
+//             uploadUserFile("Select an image", function (fileUrl) {
+//                 var imageLink = "\n\n<br/><br/><img src='" + fileUrl + "' class='commentImage' /><br/><br/>\n\n";
+//                 var cursorPos = textArea.prop('selectionStart');
+//                 var v = textArea.val();
+//                 var textBefore = v.substring(0, cursorPos);
+//                 var textAfter = v.substring(cursorPos, v.length);
+//                 var newVal = textBefore + imageLink + textAfter;
+//                 textArea.val(textBefore + imageLink + textAfter);
+//             });
+//         }
+//     });
+
+//     newComment.find('.previewComment').click(function () {
+//         var textArea = newComment.find('.newComment');
+//         var content = textArea.val();
+//         showOkayAlert("Comment preview", "<div style='width:100%; text-align:left;'>" + content + "</div>", function (b, e) {
+//             e.remove();
+//         });
+//     });
+
+
+
+
+
+//     topicBody.append(newComment);
+//     topicDiv.find('.topic-header').click(function () {
+//         if (topicBody.is(":visible")) {
+//             topicBody.hide();
+//             $('.topic-body').removeClass('active')
+//             console.log('unclicked');
+
+//         } else {
+//             topicBody.show();
+//             $(this).siblings(".topic-body").toggleClass("active");
+//             // $('.topic-body').addClass('active')
+//             console.log('clicked');
+//         }
+//     });
+//     topicDiv.append(topicBody);
+
+//     // let topicCard = document.querySelectorAll('.topic');
+
+//     // let observe = new IntersectionObserver(entries => {
+//     //     entries.forEach(entry => {
+//     //         if (entry.isIntersecting) {
+//     //             entry.target.classList.add('show');
+//     //         }
+//     //     });
+//     // });
+
+//     // topicCard.forEach(card => observe.observe(card));
+
+//     return topicDiv;
+
+// }
+
 var addTopic = function (topic) {
-    var topicDiv = $("<div class='topic'><div class='topic-header'><div class='topicTitle'><span class='topicName'>" + topic.topicName + "</span><span class='topic-meta'>By " + topic.user + "  " + topic.date + "</span></div><div class='topicDescription'>" + topic.description + "</div></div></div>");
-    var topicBody = $("<div class='topic-body'></div>");
-    $.each(topic.comments, function (index, comment) {
-        var div = addComment(comment);
-        topicBody.append(div);
+    console.log(topic)
+    // Create card container
+    var topicDiv = $(`
+        <div class='topic'>
+            <div class='topic-header'>
+                <div class='topicTitle'>
+                    <span class='topicName'>${topic.topicName}</span>
+                    <span class='topic-meta'>By ${topic.user} ${topic.date}</span>
+                </div>
+            </div>
+        </div>
+    `);
+
+    // Store full topic object (SAFE way)
+    topicDiv.data("item", topic);
+
+    // On clicking the topic → open detail page
+    topicDiv.click(function () {
+
+        // Get stored topic object
+        let t = $(this).data("item");
+
+        showTopicDetail(t);  // call the detail view
     });
 
+    return topicDiv;
+}
+
+function showTopicDetail(topic) {
+    // console.log(topic)
+    currentOpenTopic = topic;
+
+    $("#topics-container").hide();
+    $(".forum-pagination").hide();
+    $(".forumPopUpGenerater").hide();
+    $(".forum-search-container").hide();
+    $("#topic-detail").show().html("");
+
+    let detail = $(`
+        <div class="topic-detail-container">
+
+            <button id="backBtn">← Back</button>
+
+            <h2>${topic.topicName}</h2>
+            <p class="topic-meta">By ${topic.user} • ${topic.date}</p>
+
+            <div class="topic-full-description">${topic.description}</div>
+
+            <h3>Comments</h3>
+            <div id="comments-container"></div>
+
+        </div>
+    `);
+
+    $("#topic-detail").append(detail);
+
+    // Load existing comments
+    topic.comments.forEach(comment => {
+        $("#comments-container").append(addComment(comment));
+    });
+
+    // Add your old comment form
+    $("#comments-container").append(addCommentForm(topic));
+
+    // Back button
+    $("#backBtn").click(() => {
+        $("#topic-detail").hide();
+        $(".forum-pagination").show();
+        $(".forumPopUpGenerater").show();
+        $("#topics-container").show();
+        $(".forum-search-container").show();
+    });
+
+    // $(".alert-button").click(() => {
+    //     $(".alert-popup").hide();
+    //     console.log('hai')
+    //     $(".overlay").hide();
+    // });
 
 
-    var newComment = $("<form class='comment-form'><textarea placeholder='Add a comment' required='' class='newComment' maxlength='1000'></textarea><div class='commentActions'><button class='addNewComment' type='submit'>Comment</button><button class='insertImage' type='button'>Insert Image</button><button class='previewComment' type='button'>Preview</button></div></form>");
+}
+
+function addCommentForm(topic) {
+
+    var newComment = $("<form class='comment-form'>" +
+        "<textarea placeholder='Add a comment' required class='newComment' maxlength='1000'></textarea>" +
+        "<div class='commentActions'>" +
+        "<button class='addNewComment' type='submit'>Comment</button>" +
+        "<button class='insertImage' type='button'>Insert Image</button>" +
+        "<button class='previewComment' type='button'>Preview</button>" +
+        "</div></form>");
 
     newComment.submit(function (e) {
-        var comment = $(this).find('.newComment').val();
+        e.preventDefault();
 
-        if (comment.trim() == "") {
-            e.preventDefault();
+        var comment = $(this).find('.newComment').val().trim();
+        if (comment === "") {
             showOkayAlert("Error", "Empty comment", function (b, e) {
                 e.remove();
             });
@@ -265,35 +498,43 @@ var addTopic = function (topic) {
         }
 
         $.ajax({
-            url: lmsServer + "/Content/AddComment?topicId=" + topic.id + "&comment=" + encodeURIComponent(comment) + "&token=" + encodeURIComponent(token),
+            url: lmsServer + "/Content/AddComment?topicId=" + topic.id +
+                "&comment=" + encodeURIComponent(comment) +
+                "&token=" + encodeURIComponent(token),
             type: "GET",
+
             beforeSend: function () {
                 newComment.find('.addNewComment').prop('disabled', true).html("Submitting..");
             },
+
             success: function (response) {
                 newComment.find('.addNewComment').prop('disabled', false).html("Comment");
+
                 var commentDiv = addComment(response);
                 newComment.before(commentDiv);
                 newComment.find('.newComment').val("");
-            },
-            error: function (xhr, status, error) {
-                var e = eval("(" + xhr.responseText + ")");
-                if (e == undefined) {
-                    e = "Unable to add the topic, the server is not reachable.";
-                    showError(e);
-                } else {
-                    showError("Error: " + e.title + ". Click <a class='tryAgainLink' href='Login.html'> here </a> to go to login.");
+
+                // ⭐ FIX: Add comment to memory so it won’t disappear
+                if (currentOpenTopic) {
+                    currentOpenTopic.comments.push(response);
                 }
             },
-            dataType: "JSON",
-            contentType: "application/json; charset=utf-8",
-            complete: function (response) {
 
+            error: function (xhr) {
+                var e = eval("(" + xhr.responseText + ")");
+                if (e == undefined) {
+                    showError("Unable to add the comment. Server unreachable.");
+                } else {
+                    showError("Error: " + e.title + ". Click <a href='Login.html'>here</a> to login.");
+                }
             }
         });
+
         return false;
     });
 
+
+    // Insert image into comment
     newComment.find('.insertImage').click(function () {
         var textArea = newComment.find('.newComment');
         if (textArea.val().length > 850) {
@@ -302,59 +543,22 @@ var addTopic = function (topic) {
             });
         } else {
             uploadUserFile("Select an image", function (fileUrl) {
-                var imageLink = "\n\n<br/><br/><img src='" + fileUrl + "' class='commentImage' /><br/><br/>\n\n";
-                var cursorPos = textArea.prop('selectionStart');
-                var v = textArea.val();
-                var textBefore = v.substring(0, cursorPos);
-                var textAfter = v.substring(cursorPos, v.length);
-                var newVal = textBefore + imageLink + textAfter;
-                textArea.val(textBefore + imageLink + textAfter);
+                var img = `<br><br><img src='${fileUrl}' class='commentImage'/><br><br>`;
+                var cursor = textArea.prop('selectionStart');
+                var txt = textArea.val();
+                textArea.val(txt.substring(0, cursor) + img + txt.substring(cursor));
             });
         }
     });
 
+
+    // Preview comment
     newComment.find('.previewComment').click(function () {
-        var textArea = newComment.find('.newComment');
-        var content = textArea.val();
+        var content = newComment.find('.newComment').val();
         showOkayAlert("Comment preview", "<div style='width:100%; text-align:left;'>" + content + "</div>", function (b, e) {
             e.remove();
         });
     });
 
-
-
-
-
-    topicBody.append(newComment);
-    topicDiv.find('.topic-header').click(function () {
-        if (topicBody.is(":visible")) {
-            topicBody.hide();
-            $('.topic-body').removeClass('active')
-            console.log('unclicked');
-
-        } else {
-            topicBody.show();
-            $(this).siblings(".topic-body").toggleClass("active");
-            // $('.topic-body').addClass('active')
-            console.log('clicked');
-        }
-    });
-    topicDiv.append(topicBody);
-
-    // let topicCard = document.querySelectorAll('.topic');
-
-    // let observe = new IntersectionObserver(entries => {
-    //     entries.forEach(entry => {
-    //         if (entry.isIntersecting) {
-    //             entry.target.classList.add('show');
-    //         }
-    //     });
-    // });
-
-    // topicCard.forEach(card => observe.observe(card));
-
-    return topicDiv;
-
-
-
+    return newComment;
 }
